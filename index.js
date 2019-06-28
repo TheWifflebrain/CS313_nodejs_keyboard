@@ -15,7 +15,7 @@ express()
 
 
 function getBoard(req, res){
-    var id = req.query.id
+    const id = req.query.id
 
     getBoardFromDB(id, function(error, result){
       console.log("Back from db with results", result);
@@ -25,11 +25,14 @@ function getBoard(req, res){
 }
 
 function getBoardFromDB(id, callback){
+  console.log("id: " + id);
   var sql = "SELECT * FROM keyboard WHERE keyboard_id = $1::init"
   var params = [id];
   pool.query(sql, params, function(err, result){
     if(err){
-      console.log("error" + err);
+      console.log("Error in query: ")
+			console.log(err);
+			callback(err, null);
     }
     console.log("foun DB result: "+ JSON.stringify(result.rows))
     callback(null, result.rows);
