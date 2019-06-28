@@ -27,7 +27,7 @@ function getBoard(req, res){
         console.log("Back from db with results", result);
         const keyswitch = result[1];
         res.status(200).json(keyswitch)
-        //JSON.stringify(result.rows)
+        JSON.stringify(result.rows)
       }
     });
 }
