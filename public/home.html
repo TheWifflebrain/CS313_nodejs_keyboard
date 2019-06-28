@@ -9,6 +9,16 @@
     <title>Document</title>
 </head>
 <body>
-    <h1 class="jumbotron text-center jumbo">Hello World</h1>
+    <h1 class="jumbotron text-center jumbo">Disaply Board</h1>
+    <div class="container">
+        <form action="/getBoard" method="GET">
+            <label for="board">Display Which Board?</label>
+            <select name="board">
+                <option name="1" value="1">1</option>
+                <option name="2" value="2">2</option>
+            </select>
+            <button type="submit" class="btn btn-info btn-block">Display</button>
+        </form>
+    </div>
 </body>
 </html>

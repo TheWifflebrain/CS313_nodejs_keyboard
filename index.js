@@ -28,7 +28,7 @@ function getBoard(req, res){
 
 function getBoardFromDB(id, callback){
   console.log("id: " + id);
-  var sql = "SELECT * FROM keyboard WHERE keyboard_id = 1"
+  var sql = "SELECT * FROM keyboard WHERE keyboard_id = $1::int"
   var params = [id];
   pool.query(sql, params, function(err, result){
     if(err){
@@ -36,7 +36,7 @@ function getBoardFromDB(id, callback){
 			console.log(err);
 			callback(err, null);
     }
-    //console.log("foun DB result: "+ JSON.stringify(result.rows))
+    console.log("foun DB result: "+ JSON.stringify(result.rows))
     var result = {
       success: true,
       list:result.rows
