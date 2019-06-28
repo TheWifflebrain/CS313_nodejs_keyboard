@@ -34,7 +34,7 @@ function getBoardFromDB(id, callback){
 			console.log(err);
 			callback(err, null);
     }
-    console.log("foun DB result: "+ JSON.stringify(result.rows))
+    //console.log("foun DB result: "+ JSON.stringify(result.rows))
     callback(null, result.rows);
   })
 }
