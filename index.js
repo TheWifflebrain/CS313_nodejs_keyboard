@@ -23,7 +23,7 @@ function getBoard(req, res){
       console.log("Back from db with results", result);
     });
 
-    res.json(result)
+    res.JSON.stringify(result.rows)
 }
 
 function getBoardFromDB(id, callback){
