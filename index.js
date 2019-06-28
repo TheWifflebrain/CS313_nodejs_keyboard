@@ -4,6 +4,7 @@ const PORT = process.env.PORT || 5000
 const { Pool } = require("pg")
 const connectionString = process.env.DATABASE_URL;
 const pool = new Pool({connectionString: connectionString});
+const app = express();
 
 express()
   .use(express.static(path.join(__dirname, 'public')))
@@ -35,6 +36,10 @@ function getBoardFromDB(id, callback){
 			callback(err, null);
     }
     //console.log("foun DB result: "+ JSON.stringify(result.rows))
-    callback(null, result.rows);
+    var result = {
+      success: true,
+      list:result.rows
+    }
+    callback(null, result);
   })
 }
