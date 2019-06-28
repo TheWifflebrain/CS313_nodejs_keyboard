@@ -25,7 +25,7 @@ function getBoard(req, res){
       } 
       else {
         console.log("Back from db with results", result);
-        res.status(200).json(result.rows)
+        //res.status(200).json(result.rows)
         JSON.stringify(result.rows)
       }
     });
