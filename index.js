@@ -20,10 +20,15 @@ function getBoard(req, res){
     const id = req.query.id
 
     getBoardFromDB(id, function(error, result){
-      console.log("Back from db with results", result);
+      if (error || result == null || result.length != 1) {
+        res.status(500).json({success: false, data: error});
+      } else {
+        console.log("Back from db with results", result);
+        //res.JSON.stringify(result.rows)
+        const name = result[1];
+        res.status(200).json(name);
+      }
     });
-
-    res.JSON.stringify(result.rows)
 }
 
 function getBoardFromDB(id, callback){
