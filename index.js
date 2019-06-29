@@ -1,20 +1,26 @@
 const express = require('express')
+const app = express()
 const path = require('path')
 const PORT = process.env.PORT || 5000
 const { Pool } = require("pg")
 const connectionString = process.env.DATABASE_URL;
 const pool = new Pool({connectionString: connectionString});
-const app = express();
-require('util');
+const frontpageController = require("./controller/frontpageController.js");
 
-express()
+
+app
   .use(express.static(path.join(__dirname, 'public')))
   .set('views', path.join(__dirname, 'views'))
   .set('view engine', 'ejs')
   .get('/', (req, res) => res.render('pages/index'))
   .get('/getBoard', getBoard)
+  .get('/getFrontPage', getFrontPage)
+  .get('/frontpage', frontpageController.getFrontpage)
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))
 
+function getFrontPage(req, res){
+  res.render('pages/frontpage');
+}
 
 function getBoard(req, res){
     const id = req.query.id
