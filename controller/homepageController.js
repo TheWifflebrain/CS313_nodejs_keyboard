@@ -2,7 +2,7 @@ const homepageModel = require("../model/homepageModel.js")
 
 function getHomepage(req, res){
     console.log("hello world")
-    homepageModel.gethomepageDB(function(error, result){
+    homepageModel.getHomepageDB(function(error, result){
         if (error || result == null) {
             res.status(500).json({success: false, data: error});
         } 
@@ -15,7 +15,7 @@ function getHomepage(req, res){
 
             }
             console.log("Back from db with results", keys.sizek)
-            res.render('../views/pages/frontpage', {
+            res.render('../views/pages/homepage', {
                 keyboard_id: keys.keyboard_id,
                 switch: keys.switch,
                 sizek: keys.sizek,
