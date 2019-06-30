@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../stylesheets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../stylesheets/main.css">
+    <script src="clientSideHomepage.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/d3js/5.9.0/d3.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <h1>Homepage</h1>
+
+    <button id="getKeyboard" onclick="displayKeyboard()">Display Keyboard</button><br>
+    <button id="getSwitch" onclick="displaySwitch()">Display Switch</button><br>
+    <button id="getCaps" onclick="displayCaps()">Display Caps</button><br>
+    
+    <div>
+		<h2>Results For Keyboards</h2>
+		<ul id="displayKeyboard_id">
+		</ul>
+    </div>
+
+	<div>
+		<h2>Results For Switches</h2>
+		<ul id="displaySwitch_id">
+		</ul>
+    </div>
+
+    <div>
+		<h2>Results For Caps</h2>
+		<ul id="displayCaps_id">
+		</ul>
+    </div>
+</body>
+</html>

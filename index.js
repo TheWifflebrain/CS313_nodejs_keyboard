@@ -11,9 +11,14 @@ const homepageController = require("./controller/homepageController.js");
 
 app
   .use(express.static(path.join(__dirname, 'public')))
+  .use(express.json())
+  .use(express.urlencoded({extended: true}))
   .set('views', path.join(__dirname, 'views'))
   .set('view engine', 'ejs')
   .get('/', (req, res) => res.render('pages/index'))
   .get('/homepage', homepageController.getHomepage)
+  .get('/getKeyboard', homepageController.getKeyboard)
+  .get('/getSwitches', homepageController.getSwitches)
+  .get('/getCaps', homepageController.getCaps)
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))
 

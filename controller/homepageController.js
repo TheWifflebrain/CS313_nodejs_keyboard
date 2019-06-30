@@ -1,7 +1,7 @@
 const homepageModel = require("../model/homepageModel.js")
 
 function getHomepage(req, res){
-    console.log("In getHomepage")
+    console.log("In getHomepage controller")
     homepageModel.getHomepageDB(function(error, result){
         if (error || result == null) {
             res.status(500).json({success: false, data: error});
@@ -12,11 +12,45 @@ function getHomepage(req, res){
     })
 }
 
-function getSwitches(req, res){
+function getKeyboard(req, res){
+    console.log("In getKeyboard controller")
+    homepageModel.getKeyboardDB(function(error, result){
+        if (error || result == null) {
+            res.status(500).json({success: false, data: error});
+        } 
+        else{
+            res.json(result)
+        }
+    })
+}
 
+function getSwitches(req, res){
+    console.log("In getSwitches controller")
+    homepageModel.getSwitchesDB(function(error, result){
+        if (error || result == null) {
+            res.status(500).json({success: false, data: error});
+        } 
+        else{
+            res.json(result)
+        }
+    })
+}
+
+function getCaps(req, res){
+    console.log("In getCaps controller")
+    homepageModel.getCapsDB(function(error, result){
+        if (error || result == null) {
+            res.status(500).json({success: false, data: error});
+        } 
+        else{
+            res.json(result)
+        }
+    })
 }
 
 module.exports = {
     getHomepage: getHomepage,
-    getSwitches: getSwitches
+    getKeyboard: getKeyboard,
+    getSwitches: getSwitches,
+    getCaps: getCaps
 };
