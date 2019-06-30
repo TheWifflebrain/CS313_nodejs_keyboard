@@ -14,10 +14,6 @@ app
   .set('views', path.join(__dirname, 'views'))
   .set('view engine', 'ejs')
   .get('/', (req, res) => res.render('pages/index'))
-  .get('/getHomepage', getHomePage)
   .get('/homepage', homepageController.getHomepage)
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))
 
-function getHomePage(req, res){
-  res.render('pages/homepage');
-}
