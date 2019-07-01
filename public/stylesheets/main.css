@@ -63,4 +63,14 @@ input[type=submit]:hover {
 .hide{
     display:none;
 }
+.keyList{
+  padding: 10px 30px 10px 30px;
+}
 
+.centered-form{
+margin-top: 60px;
+}
+
+.centered-form .panel{
+background: rgba(255, 255, 255, 0.8);
+}
