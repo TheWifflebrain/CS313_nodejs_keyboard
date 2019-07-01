@@ -11,28 +11,32 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Homepage</h1>
+    <h1 class="jumbotron text-center jumbo">Homepage</h1>
 
-    <button id="getKeyboard" onclick="displayKeyboard()">Display Keyboard</button><br>
-    <button id="getSwitch" onclick="displaySwitches()">Display Switch</button><br>
-    <button id="getCaps" onclick="displayCaps()">Display Caps</button><br>
-    
-    <div>
-		<h2>Results For Keyboards</h2>
-		<ul id="displayKeyboards_id">
-		</ul>
+    <div class="row">
+        <div class="col"><button class="btn btn-info btn-block" id="getKeyboard" onclick="displayKeyboard()">Display Keyboard</button></div>
+        <div class="col"><button class="btn btn-info btn-block" id="getSwitch" onclick="displaySwitches()">Display Switch</button></div>
+        <div class="col"><button class="btn btn-info btn-block" id="getCaps" onclick="displayCaps()">Display Caps</button></div>
+      </div>
     </div>
 
-	<div>
-		<h2>Results For Switches</h2>
-		<ul id="displaySwitches_id">
-		</ul>
+    <div class="hide" id="dKeyboard">
+        <h2 class="text-center">Results For Keyboards</h2>
+        <ul id="displayKeyboards_id">
+        </ul>
     </div>
 
-    <div>
-		<h2>Results For Caps</h2>
-		<ul id="displayCaps_id">
-		</ul>
+    <div class="hide" id="dSwitches">
+        <h2 class="text-center">Results For Switches</h2>
+        <ul id="displaySwitches_id">
+        </ul>
     </div>
+
+    <div class="hide" id="dCaps">
+        <h2 class="text-center">Results For Caps</h2>
+        <ul id="displayCaps_id">
+        </ul>
+    </div>
+
 </body>
 </html>
