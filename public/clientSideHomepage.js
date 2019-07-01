@@ -1,31 +1,20 @@
-function displayKeyboard() {
-    console.log("In displayKeyboard client js");
-    
+function displayKeyboard() {    
 	$.get("/getKeyboard", function(data) {
-		console.log("**Back from the server with:");
-		console.log(data);
-        console.log("Data length = " + data.list.length)
-            console.log("in empty keyboard")
-            for (var i = 0; i < data.list.length; i++) {
-                var keyboard = data.list[i];
-                if(i == 0){
-                    $("#displayKeyboards_id").empty().append("<div class='jumbotron text-center'><h1>" + keyboard.keyboardname + "</a></h1></div><div class='keyList'><div><img class='img-thumbnail mx-auto d-block img-fluid' src='" + keyboard.photo + "'></div><div><h4>" + keyboard.descriptionk + "</h4></div><div class='container'><table class='table table-striped'><thead><tr><th>Switch</th><th>Type</th><th>Size</th></tr></thead><tbody><tr><td>" + keyboard.switch + "</td><td>" + keyboard.typek + "</td><td>" + keyboard.size + "</td></tr></tbody></table></div></div>" );
-                }
-                else{
-                    $("#displayKeyboards_id").append("<div class='jumbotron text-center'><h1>" + keyboard.keyboardname + "</a></h1></div><div class='keyList'><div><img class='img-thumbnail mx-auto d-block img-fluid' src='" + keyboard.photo + "'></div><div><h4>" + keyboard.descriptionk + "</h4></div><div class='container'><table class='table table-striped'><thead><tr><th>Switch</th><th>Type</th><th>Size</th></tr></thead><tbody><tr><td>" + keyboard.switch + "</td><td>" + keyboard.typek + "</td><td>" + keyboard.size + "</td></tr></tbody></table></div></div>" );
-                }
+        for (var i = 0; i < data.list.length; i++) {
+            var keyboard = data.list[i];
+            if(i == 0){
+                $("#displayKeyboards_id").empty().append("<div class='jumbotron text-center'><h1>" + keyboard.keyboardname + "</a></h1></div><div class='keyList'><div><img class='img-thumbnail mx-auto d-block img-fluid' src='" + keyboard.photo + "'></div><div><h4>" + keyboard.descriptionk + "</h4></div><div class='container'><table class='table table-striped'><thead><tr><th>Switch</th><th>Type</th><th>Size</th></tr></thead><tbody><tr><td>" + keyboard.switch + "</td><td>" + keyboard.typek + "</td><td>" + keyboard.size + "</td></tr></tbody></table></div></div>" );
             }
+            else{
+                $("#displayKeyboards_id").append("<div class='jumbotron text-center'><h1>" + keyboard.keyboardname + "</a></h1></div><div class='keyList'><div><img class='img-thumbnail mx-auto d-block img-fluid' src='" + keyboard.photo + "'></div><div><h4>" + keyboard.descriptionk + "</h4></div><div class='container'><table class='table table-striped'><thead><tr><th>Switch</th><th>Type</th><th>Size</th></tr></thead><tbody><tr><td>" + keyboard.switch + "</td><td>" + keyboard.typek + "</td><td>" + keyboard.size + "</td></tr></tbody></table></div></div>" );
+            }
+        }
     })
     $("#dKeyboard").toggle();
 }
 
 function displaySwitches() {
-    console.log("In displaySwitches client js");
-    
 	$.get("/getSwitches", function(data) {
-		console.log("Back from the server with:");
-		console.log(data);
-
 		for (var i = 0; i < data.list.length; i++) {
             var switches = data.list[i];
             if(i == 0){
@@ -40,12 +29,7 @@ function displaySwitches() {
 }
 
 function displayCaps() {
-    console.log("In displayCaps client js");
-    
 	$.get("/getCaps", function(data) {
-		console.log("Back from the server with:");
-		console.log(data);
-
 		for (var i = 0; i < data.list.length; i++) {
             var caps = data.list[i];
             if(i == 0){
@@ -55,7 +39,6 @@ function displayCaps() {
                 $("#displayCaps_id").append("<div class='jumbotron text-center'><h1>" + caps.capname + "</a></h1></div><div class='keyList'><div><img class='img-thumbnail mx-auto d-block img-fluid' src='" + caps.photo + "'></div><div><h4>" + caps.descriptionc + "</h4></div><div class='container'><table class='table table-striped'><thead><tr><th>Material</th></tr></thead><tbody><tr><td>" + caps.material + "</td></tr></tbody></table></div></div>" );
             }
         }
-        
     })
     $("#dCaps").toggle();
 }
