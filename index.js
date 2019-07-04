@@ -7,6 +7,7 @@ const { Pool } = require("pg")
 const connectionString = process.env.DATABASE_URL ||  process.env.DATABASE_URL1;
 const pool = new Pool({connectionString: connectionString});
 const homepageController = require("./controller/homepageController.js");
+const accountController = require("./controller/accountController.js");
 
 
 app
@@ -20,5 +21,6 @@ app
   .get('/getKeyboard', homepageController.getKeyboard)
   .get('/getSwitches', homepageController.getSwitches)
   .get('/getCaps', homepageController.getCaps)
+  .post('/register', accountController.register)
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))
 

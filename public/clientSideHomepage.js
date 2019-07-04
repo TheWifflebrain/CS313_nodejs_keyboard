@@ -42,3 +42,9 @@ function displayCaps() {
     })
     $("#dCaps").toggle();
 }
+
+function register(){
+    $.post("/register", function(data){
+        
+    })
+}
