@@ -47,10 +47,30 @@ function getCaps(req, res){
         }
     })
 }
+/*--------------------------------------------------------*/
+function addKeyboard(req, res){
+    const keyboard = req.body.keyboard
+    homepageModel.addKeyboardDB(keyboard, function(error, results){
+        if(!error){
+            res.json(results);
+        }
+    })
+}
+
+function addSwitches(req, res){
+
+}
+
+function addCaps(req, res){
+
+}
 
 module.exports = {
     getHomepage: getHomepage,
     getKeyboard: getKeyboard,
     getSwitches: getSwitches,
-    getCaps: getCaps
+    getCaps: getCaps,
+    addKeyboard: addKeyboard,
+    addSwitches: addSwitches,
+    addCaps: addCaps
 };

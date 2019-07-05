@@ -79,10 +79,61 @@ function getCapsDB(callback){
         }
     })
 }
+/*---------------------------------------------------------------------*/
+function addKeyboardDB(keyboard, callback){
+    var sql = "INSERT INTO keyboard(keyboardName, switch, size, typeK, descriptionK, photo, usernameK) VALUES($1, $2, $3, $4, $5, $6, $7)";
+    var params = [keyboard.keyboardname, keyboard.switch, keyboard.size, keyboard.typek, keyboard.descriptionk, keyboard.photo, "helloWorld1"];
+    pool.query(sql, params, function(error, db_results){
+        if(error){
+            throw error;
+        } else {
+            var results = {
+                success:true,
+                list:db_results.rows
+            };
+            callback(null, results);
+        }
+    })
+}
+
+function addSwitchesDB(switches, callback){
+    var sql = "INSERT INTO switches (switchName, types, travel, actuation, bottomout, photo, usernames) VALUES ($1, $2, $3, $4, $5, $6, $7)";
+    var params = [switches.switchname, switches.types, switches.travel, switches.actuation ,switches.bottomout ,switches.photo, 'helloWorld1'];
+    pool.query(sql, params, function(err,db_results){
+        if(err){
+            throw err;
+        } else {
+            var results = {
+                success:true,
+                list:db_results.rows
+            };
+            callback(null, results);
+        }
+    })
+}
+
+function addCapsDB(caps, callback){
+    var sql = "INSERT INTO caps (capName, material, descriptionc, photo, usernamec) VALUES ($1, $2, $3, $4, $5)";
+    var params = [caps.capName, caps.material, caps.descriptionc, caps.photo, 'helloWorld1'];
+    pool.query(sql, params, function(err,db_results){
+        if(err){
+            throw err;
+        } else {
+            var results = {
+                success:true,
+                list:db_results.rows
+            };
+            callback(null, results);
+        }
+    })
+}
 
 module.exports = {
     getHomepageDB: getHomepageDB,
     getKeyboardDB: getKeyboardDB,
     getSwitchesDB: getSwitchesDB,
-    getCapsDB: getCapsDB
+    getCapsDB: getCapsDB,
+    addKeyboardDB: addKeyboardDB,
+    addSwitchesDB: addSwitchesDB,
+    addCapsDB: addCapsDB
 };

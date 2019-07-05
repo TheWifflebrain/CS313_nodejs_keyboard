@@ -43,8 +43,34 @@ function displayCaps() {
     $("#dCaps").toggle();
 }
 
-function register(){
-    $.post("/register", function(data){
-        
-    })
+function addKeyboard(){
+    $("#addKeyboards_id").empty().append("<div class='panel-body'><div class='form-group'><input type='text' name='keyboardName' id='keyboardName' class='form-control input-sm' placeholder='Keyboard Name' required></div><div class='form-group'><input type='text' name='desc' id='desc' class='form-control input-sm' placeholder='Description' required></div><div class='form-group'><input type='text' name='switch' id='switch' class='form-control input-sm' placeholder='Switch' required></div><div class='form-group'><input type='text' name='size' id='size' class='form-control input-sm' placeholder='Size' required></div><div class='form-group'><input type='text' name='type' id='type' class='form-control input-sm' placeholder='Custom or Pre-Built' required></div><div class='form-group'><input type='text' name='photo' id='photo' class='form-control input-sm' placeholder='Photo URL' required></div><input onclick='sendKeyboardInfo();' name='Add' value='Add' class='btn btn-info btn-block'></div>")
+    $("#aKeyboard").toggle();
 }
+
+function sendKeyboardInfo(){
+    var name = $("#keyboardName").val();
+    var switchk = $("#type").val();
+    var size = $("#size").val();
+    var type = $("#type").val();
+    var description = $("#desc").val();
+    var photo = $("#photo").val();
+    var keyboard = {"keyboardname": name, "switch": switchk, "size": size, "typek": type, "descriptionk": description, "photo": photo };
+        $.post("/addKeyboard", {keyboard:keyboard}, function(error, res){
+            if(!error)
+            {
+                alert("keyboard succesfully created");
+            } else {
+                console.log(error);
+                alert("error");
+            }
+        })
+
+
+}
+
+// function register(){
+//     $.post("/register", function(data){
+        
+//     })
+// }
