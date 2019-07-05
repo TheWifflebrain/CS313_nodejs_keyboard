@@ -48,16 +48,16 @@ function getCaps(req, res){
     })
 }
 /*--------------------------------------------------------*/
-function addKeyboard(req, res, callback){
+function addKeyboard(req, res){
     const keyboard = req.body.keyboard
     console.log(keyboard);
     homepageModel.addKeyboardDB(keyboard, function(error, result){
-        if (error) {
-            res.status(500).json({success: false, data: error});
-        } 
-        else{
-            res.json(result)
-        }
+        // if (error) {
+        //     res.status(500).json({success: false, data: error});
+        // } 
+        // else{
+        //     res.json(result)
+        // }
     })
 }
 
@@ -65,12 +65,12 @@ function addSwitches(req, res){
     const switches = req.body.switches
     console.log(switches);
     homepageModel.addSwitchesDB(switches, function(error, result){
-        if (error) {
-            res.status(500).json({success: false, data: error});
-        } 
-        else{
-            res.json(result)
-        }
+        // if (error) {
+        //     res.status(500).json({success: false, data: error});
+        // } 
+        // else{
+        //     res.json(result)
+        // }
     })
 }
 
@@ -78,12 +78,12 @@ function addCaps(req, res){
     const caps = req.body.caps
     console.log(caps);
     homepageModel.addCapsDB(caps, function(error, result){
-        if (error) {
-            res.status(500).json({success: false, data: error});
-        } 
-        else{
-            res.json(result)
-        }
+        // if (error) {
+        //     res.status(500).json({success: false, data: error});
+        // } 
+        // else{
+        //     res.json(result)
+        // }
     })
 }
 
