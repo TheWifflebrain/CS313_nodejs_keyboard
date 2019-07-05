@@ -62,11 +62,29 @@ function addKeyboard(req, res, callback){
 }
 
 function addSwitches(req, res){
-
+    const switches = req.body.switches
+    console.log(switches);
+    homepageModel.addSwitchesDB(switches, function(error, result){
+        if (error) {
+            res.status(500).json({success: false, data: error});
+        } 
+        else{
+            res.json(result)
+        }
+    })
 }
 
 function addCaps(req, res){
-
+    const caps = req.body.caps
+    console.log(caps);
+    homepageModel.addCapsDB(caps, function(error, result){
+        if (error) {
+            res.status(500).json({success: false, data: error});
+        } 
+        else{
+            res.json(result)
+        }
+    })
 }
 
 module.exports = {

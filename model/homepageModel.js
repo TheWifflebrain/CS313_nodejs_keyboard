@@ -98,14 +98,14 @@ function addKeyboardDB(keyboard, callback){
 
 function addSwitchesDB(switches, callback){
     var sql = "INSERT INTO switches (switchName, typeS, travel, actuation, bottomOut, photo, usernameS) VALUES ($1, $2, $3, $4, $5, $6, $7)";
-    var params = [switches.switchname, switches.types, switches.travel, switches.actuation ,switches.bottomout ,switches.photo, 'helloWorld1'];
+    var params = [switches.switchname, switches.types, switches.travel, switches.actuation ,switches.bottomout ,switches.photos, 'helloWorld1'];
     pool.query(sql, params, function(err,db_results){
         if(err){
-            throw err;
+           throw err;
         } else {
             var results = {
                 success:true,
-                list:db_results.rows
+               list:db_results.rows
             };
             callback(null, results);
         }
@@ -113,8 +113,8 @@ function addSwitchesDB(switches, callback){
 }
 
 function addCapsDB(caps, callback){
-    var sql = "INSERT INTO caps (capName, material, descriptionc, photo, usernamec) VALUES ($1, $2, $3, $4, $5)";
-    var params = [caps.capName, caps.material, caps.descriptionc, caps.photo, 'helloWorld1'];
+    var sql = "INSERT INTO caps (capName, material, descriptionC, photo, usernameC) VALUES ($1, $2, $3, $4, $5)";
+    var params = [caps.capname, caps.material, caps.descriptionc, caps.photoc, 'helloWorld1'];
     pool.query(sql, params, function(err,db_results){
         if(err){
             throw err;

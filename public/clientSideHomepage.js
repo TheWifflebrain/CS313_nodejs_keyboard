@@ -56,16 +56,69 @@ function sendKeyboardInfo(){
     var description = $("#desc").val();
     var photo = $("#photo").val();
     var keyboard = {"keyboardname": name, "switch": switchk, "size": size, "typek": type, "descriptionk": description, "photo": photo };
-        $.post("/addKeyboard", {keyboard:keyboard}, function(error, res){
-            if(!error)
-            {
-                alert("keyboard succesfully created");
-            } else {
-                console.log(error);
-                alert("error");
-            }
-        })
+    $.post("/addKeyboard", {keyboard:keyboard}, function(error, res){
+        if(!error)
+        {
+            alert("keyboard succesfully created");
+        } else {
+            console.log(error);
+            alert("error");
+        }
+    })
+    alert("keyboard added!");
+    $("#aKeyboard").toggle();
 
+}
+///////////////////////
+function addSwitches(){
+    $("#addSwitches_id").empty().append("<div class='panel-body'><div class='form-group'><input type='text' name='switchName' id='switchName' class='form-control input-sm' placeholder='Switch Name' required></div><div class='form-group'><input type='text' name='typeS' id='typeS' class='form-control input-sm' placeholder='Type' required></div><div class='form-group'><input type='text' name='travel' id='travel' class='form-control input-sm' placeholder='Travel' required></div><div class='form-group'><input type='text' name='actuation' id='actuation' class='form-control input-sm' placeholder='Actuation' required></div><div class='form-group'><input type='text' name='bottomOut' id='bottomOut' class='form-control input-sm' placeholder='Bottom Out' required></div><div class='form-group'><input type='text' name='photo' id='photoS' class='form-control input-sm' placeholder='Photo URL' required></div><input onclick='sendSwitchesInfo();' name='Add' value='Add' class='btn btn-info btn-block'></div>")
+    $("#aSwitches").toggle();
+}
+
+function sendSwitchesInfo(){
+    var name = $("#switchName").val();
+    var typeS = $("#typeS").val();
+    var travel = $("#travel").val();
+    var actuation = $("#actuation").val();
+    var bottomOut = $("#bottomOut").val();
+    var photoS = $("#photoS").val();
+    var switches = {"switchname": name, "types": typeS, "travel": travel, "actuation": actuation, "bottomout": bottomOut, "photos": photoS };
+    $.post("/addSwitches", {switches:switches}, function(error, res){
+        if(!error)
+        {
+            alert("Switch succesfully created");
+        } else {
+            console.log(error);
+            alert("error");
+        }
+    })
+    alert("Switch added!");
+    $("#aSwitches").toggle();
+
+}
+/////////////////////
+function addCaps(){
+    $("#addCaps_id").empty().append("<div class='panel-body'><div class='form-group'><input type='text' name='capName' id='capName' class='form-control input-sm' placeholder='Cap Name' required></div><div class='form-group'><input type='text' name='material' id='material' class='form-control input-sm' placeholder='Material' required></div><div class='form-group'><input type='text' name='descriptionC' id='descriptionC' class='form-control input-sm' placeholder='Description' required></div><div class='form-group'><input type='text' name='photoC' id='photoC' class='form-control input-sm' placeholder='Photo URL' required></div><input onclick='sendCapsInfo();' name='Add' value='Add' class='btn btn-info btn-block'></div>")
+    $("#aCaps").toggle();
+}
+
+function sendCapsInfo(){
+    var name = $("#capName").val();
+    var material = $("#material").val();
+    var descriptionC = $("#descriptionC").val();
+    var photo = $("#photoC").val();
+    var caps = {"capname": name, "material": material, "descriptionc": descriptionC, "photoc": photo };
+    $.post("/addCaps", {caps:caps}, function(error, res){
+        if(!error)
+        {
+            alert("caps succesfully created");
+        } else {
+            console.log(error);
+            alert("error");
+        }
+    })
+    alert("Caps added!");
+    $("#aCaps").toggle();
 
 }
 
