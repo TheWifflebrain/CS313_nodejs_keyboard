@@ -97,7 +97,7 @@ function addKeyboardDB(keyboard, callback){
 }
 
 function addSwitchesDB(switches, callback){
-    var sql = "INSERT INTO switches (switchName, types, travel, actuation, bottomout, photo, usernames) VALUES ($1, $2, $3, $4, $5, $6, $7)";
+    var sql = "INSERT INTO switches (switchName, typeS, travel, actuation, bottomOut, photo, usernameS) VALUES ($1, $2, $3, $4, $5, $6, $7)";
     var params = [switches.switchname, switches.types, switches.travel, switches.actuation ,switches.bottomout ,switches.photo, 'helloWorld1'];
     pool.query(sql, params, function(err,db_results){
         if(err){

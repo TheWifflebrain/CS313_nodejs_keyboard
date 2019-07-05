@@ -48,11 +48,15 @@ function getCaps(req, res){
     })
 }
 /*--------------------------------------------------------*/
-function addKeyboard(req, res){
+function addKeyboard(req, res, callback){
     const keyboard = req.body.keyboard
-    homepageModel.addKeyboardDB(keyboard, function(error, results){
-        if(!error){
-            res.json(results);
+    console.log(keyboard);
+    homepageModel.addKeyboardDB(keyboard, function(error, result){
+        if (error) {
+            res.status(500).json({success: false, data: error});
+        } 
+        else{
+            res.json(result)
         }
     })
 }
