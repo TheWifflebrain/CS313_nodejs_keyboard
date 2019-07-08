@@ -87,6 +87,47 @@ function addCaps(req, res){
     })
 }
 
+////////////////////////////
+function removeKeyboard(req,res){
+    const kids = req.body.kids
+    console.log("In remove keyboardboard controller")
+    console.log(kids);
+    homepageModel.removeKeyboardDB(kids, function(error, result){
+
+    });
+}
+
+function removeSwitches(req,res){
+    const sids = req.body.sids
+    console.log("In remove switches controller")
+    console.log(sids);
+    homepageModel.removeSwitchesDB(sids, function(error, result){
+
+    });
+}
+
+function removeCaps(req,res){
+    const cids = req.body.cids
+    console.log("In remove caps controller")
+    console.log(cids);
+    homepageModel.removeCapsDB(cids, function(error, result){
+
+    });
+}
+
+function editKeyboard(req,res){
+    //const 
+}
+
+function editSwitches(req,res){
+    //const 
+}
+
+function editCaps(req,res){
+    //const 
+}
+
+
 module.exports = {
     getHomepage: getHomepage,
     getKeyboard: getKeyboard,
@@ -94,5 +135,11 @@ module.exports = {
     getCaps: getCaps,
     addKeyboard: addKeyboard,
     addSwitches: addSwitches,
-    addCaps: addCaps
+    addCaps: addCaps,
+    removeKeyboard: removeKeyboard,
+    removeSwitches: removeSwitches,
+    removeCaps: removeCaps,
+    editKeyboard: editKeyboard,
+    editSwitches: editSwitches,
+    editCaps: editCaps
 };

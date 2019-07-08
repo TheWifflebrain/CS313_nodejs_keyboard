@@ -5,7 +5,7 @@ const pool = new Pool({connectionString: db_url});
 require('util');
 
 function getHomepageDB(callback){
-    var sql = "SELECT keyboard_id, switch, size, typeK, descriptionK, photo, keyboardName, usernameK FROM keyboard ORDER BY keyboard_id DESC"
+    var sql = "SELECT keyboard_id, switch, size, typeK, descriptionK, photo, keyboardName, usernameK, keyboard_id FROM keyboard ORDER BY keyboard_id DESC"
     pool.query(sql, function(error, db_info){
         if(error){
             console.log("Error in query homepage: ")
@@ -24,7 +24,7 @@ function getHomepageDB(callback){
 }
 
 function getKeyboardDB(callback){
-    var sql = "SELECT keyboardName, switch, size, typeK, descriptionK, photo, usernameK FROM keyboard"
+    var sql = "SELECT keyboardName, switch, size, typeK, descriptionK, photo, usernameK, keyboard_id FROM keyboard"
     pool.query(sql, function(error, db_info){
         if(error){
             console.log("Error in query keyboard: ")
@@ -43,7 +43,7 @@ function getKeyboardDB(callback){
 }
 
 function getSwitchesDB(callback){
-    var sql = "SELECT switchName, typeS, travel, actuation, bottomOut, photo, usernameS FROM switches ORDER BY switch_id"
+    var sql = "SELECT switchName, typeS, travel, actuation, bottomOut, photo, usernameS, switch_id FROM switches ORDER BY switch_id"
     pool.query(sql, function(error, db_info){
         if(error){
             console.log("Error in query switches: ")
@@ -62,7 +62,7 @@ function getSwitchesDB(callback){
 }
 
 function getCapsDB(callback){
-    var sql = "SELECT capName, material, descriptionC, photo, usernameC FROM caps ORDER BY cap_id"
+    var sql = "SELECT capName, material, descriptionC, photo, usernameC, cap_id FROM caps ORDER BY cap_id"
     pool.query(sql, function(error, db_info){
         if(error){
             console.log("Error in query caps: ")
@@ -128,6 +128,59 @@ function addCapsDB(caps, callback){
     })
 }
 
+function removeKeyboardDB(kids, callback){
+    var sql = "DELETE FROM keyboard WHERE keyboard_id=$1"
+    var params = [kids.kid];
+    console.log(kids.kid)
+    pool.query(sql, params, function(err,db_results){
+        if(err){
+            throw err;
+        } else {
+            var results = {
+                success:true,
+                list:db_results.rows
+            };
+            callback(null, results);
+        }
+    })
+}
+
+function removeSwitchesDB(sids, callback){
+    var sql = "DELETE FROM switches WHERE switch_id=$1"
+    var params = [sids.sid];
+    console.log(sids.sid)
+    pool.query(sql, params, function(err,db_results){
+        if(err){
+            throw err;
+        } else {
+            var results = {
+                success:true,
+                list:db_results.rows
+            };
+            callback(null, results);
+        }
+    })
+}
+
+function removeCapsDB(cids, callback){
+    var sql = "DELETE FROM caps WHERE cap_id=$1"
+    var params = [cids.cid];
+    console.log(cids.cid)
+    pool.query(sql, params, function(err,db_results){
+        if(err){
+            throw err;
+        } else {
+            var results = {
+                success:true,
+                list:db_results.rows
+            };
+            callback(null, results);
+        }
+    })
+}
+
+
+
 module.exports = {
     getHomepageDB: getHomepageDB,
     getKeyboardDB: getKeyboardDB,
@@ -135,5 +188,8 @@ module.exports = {
     getCapsDB: getCapsDB,
     addKeyboardDB: addKeyboardDB,
     addSwitchesDB: addSwitchesDB,
-    addCapsDB: addCapsDB
+    addCapsDB: addCapsDB,
+    removeKeyboardDB: removeKeyboardDB,
+    removeSwitchesDB: removeSwitchesDB,
+    removeCapsDB: removeCapsDB
 };

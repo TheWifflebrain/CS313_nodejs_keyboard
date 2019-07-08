@@ -25,6 +25,10 @@ app
   .post('/addKeyboard', homepageController.addKeyboard)
   .post('/addSwitches', homepageController.addSwitches)
   .post('/addCaps', homepageController.addCaps)
+  .post('/removeKeyboard', homepageController.removeKeyboard)
+  .post('/removeSwitches', homepageController.removeSwitches)
+  .post('/removeCaps', homepageController.removeCaps)
+  .post('/editKeyboard', homepageController.editKeyboard)
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))
 
     //.post('/register', accountController.register)
