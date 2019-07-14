@@ -22,6 +22,7 @@ app
   .get('/getKeyboard', homepageController.getKeyboard)
   .get('/getSwitches', homepageController.getSwitches)
   .get('/getCaps', homepageController.getCaps)
+  .get('/getCapsId', homepageController.getCapsId)
   .post('/addKeyboard', homepageController.addKeyboard)
   .post('/addSwitches', homepageController.addSwitches)
   .post('/addCaps', homepageController.addCaps)
@@ -29,6 +30,7 @@ app
   .post('/removeSwitches', homepageController.removeSwitches)
   .post('/removeCaps', homepageController.removeCaps)
   .post('/editKeyboard', homepageController.editKeyboard)
+  .post('/editCaps', homepageController.editCaps)
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))
 
     //.post('/register', accountController.register)

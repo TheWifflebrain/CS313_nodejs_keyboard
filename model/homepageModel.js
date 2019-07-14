@@ -179,7 +179,42 @@ function removeCapsDB(cids, callback){
     })
 }
 
+function editCapsDB(caps, callback){
+    var sql = "UPDATE caps SET capName=($1), material=($2), descriptionC=($3), photo=($4), usernameC=($5) WHERE cap_id=($6)";
+    var params = [caps.capname, caps.material, caps.descriptionc, caps.photoc, 'helloWorld1', caps.cid];
+    pool.query(sql, params, function(err,db_results){
+        if(err){
+            throw err;
+        } else {
+            var results = {
+                success:true,
+                list:db_results.rows
+            };
+            callback(null, results);
+        }
+    })
+}
 
+function getCapsIdDB(caps, callback){
+    console.log("in get caps id db")
+    var sql = "SELECT capName, material, descriptionC, photo, usernameC, cap_id FROM caps WHERE cap_id=($1)"
+    var params = [caps.cid];
+    pool.query(sql, params, function(error, db_info){
+        if(error){
+            console.log("Error in query caps: ")
+			console.log(error);
+			callback(error, null);
+        } 
+        else {
+            var result = {
+                    success:true,
+                    list:db_info.rows
+            }
+            console.log("caps id DB result: "+ JSON.stringify(db_info.rows))
+            callback(null, result);
+        }
+    })
+}
 
 module.exports = {
     getHomepageDB: getHomepageDB,
@@ -191,5 +226,7 @@ module.exports = {
     addCapsDB: addCapsDB,
     removeKeyboardDB: removeKeyboardDB,
     removeSwitchesDB: removeSwitchesDB,
-    removeCapsDB: removeCapsDB
+    removeCapsDB: removeCapsDB,
+    editCapsDB: editCapsDB,
+    getCapsIdDB: getCapsIdDB
 };
