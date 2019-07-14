@@ -1,8 +1,3 @@
-const { Pool } = require("pg");
-require('dotenv').config();
-const db_url = process.env.DATABASE_URL || process.env.DATABASE_URL1;
-const pool = new Pool({connectionString: db_url});
-require('util');
 var kid;
 var sid;
 var cid;
@@ -30,11 +25,11 @@ function displaySwitches() {
             var switches = data.list[i];
             if(i == 0){
                 sid = switches.switch_id;
-			    $("#displaySwitches_id").empty().append("<div class='jumbotron text-center'><h1>" + switches.switchname + "</a></h1></div><div class='keyList'><div><img class='img-thumbnail mx-auto d-block img-fluid' src='" + switches.photo + "'></div><div></div><div class='container'><table class='table table-striped'><thead><tr><th>Type</th><th>Travel</th><th>Actuation</th><th>Bottom Out</th></tr></thead><tbody><tr><td>" + switches.types + "</td><td>" + switches.travel + "</td><td>" + switches.actuation + "</td><td>" + switches.bottomout + "</td></tr></tbody></table></div><div class='container'><table class='table'><thead><tr><th><input onclick='editSwitch()' name='Edit Switch' value='Edit Switch' class='btn btn-warning btn-sm float-center'></th><th><input onclick='removeSwitches(" + sid + ")' type='button' name='Remove switch' id ='button2' value='Remove' class='btn btn-danger btn-sm float-right'></input></th></tr></thead></div></div>" );
+			    $("#displaySwitches_id").empty().append("<div class='jumbotron text-center'><h1>" + switches.switchname + "</a></h1></div><div class='keyList'><div><img class='img-thumbnail mx-auto d-block img-fluid' src='" + switches.photo + "'></div><div></div><div class='container'><table class='table table-striped'><thead><tr><th>Type</th><th>Travel</th><th>Actuation</th><th>Bottom Out</th></tr></thead><tbody><tr><td>" + switches.types + "</td><td>" + switches.travel + "</td><td>" + switches.actuation + "</td><td>" + switches.bottomout + "</td></tr></tbody></table></div><div class='container'><table class='table'><thead><tr><th><input onclick='editSwitch(" +sid+")' name='Edit Switch' value='Edit Switch' class='btn btn-warning btn-sm float-center'></th><th><input onclick='removeSwitches(" + sid + ")' type='button' name='Remove switch' id ='button2' value='Remove' class='btn btn-danger btn-sm float-right'></input></th></tr></thead></div></div>" );
             }
             else{
                 sid = switches.switch_id;
-                $("#displaySwitches_id").append("<div class='jumbotron text-center'><h1>" + switches.switchname + "</a></h1></div><div class='keyList'><div><img class='img-thumbnail mx-auto d-block img-fluid' src='" + switches.photo + "'></div><div></div><div class='container'><table class='table table-striped'><thead><tr><th>Type</th><th>Travel</th><th>Actuation</th><th>Bottom Out</th></tr></thead><tbody><tr><td>" + switches.types + "</td><td>" + switches.travel + "</td><td>" + switches.actuation + "</td><td>" + switches.bottomout + "</td></tr></tbody></table></div><div class='container'><table class='table'><thead><tr><th><input onclick='editSwitch()' name='Edit switch' value='Edit Switch' class='btn btn-warning btn-sm float-center'></th><th><input onclick='removeSwitches(" + sid + ")' type='button' name='Remove switch' id ='button2' value='Remove' class='btn btn-danger btn-sm float-right'></input></th></tr></thead></div></div>" );
+                $("#displaySwitches_id").append("<div class='jumbotron text-center'><h1>" + switches.switchname + "</a></h1></div><div class='keyList'><div><img class='img-thumbnail mx-auto d-block img-fluid' src='" + switches.photo + "'></div><div></div><div class='container'><table class='table table-striped'><thead><tr><th>Type</th><th>Travel</th><th>Actuation</th><th>Bottom Out</th></tr></thead><tbody><tr><td>" + switches.types + "</td><td>" + switches.travel + "</td><td>" + switches.actuation + "</td><td>" + switches.bottomout + "</td></tr></tbody></table></div><div class='container'><table class='table'><thead><tr><th><input onclick='editSwitch(" +sid+")' name='Edit switch' value='Edit Switch' class='btn btn-warning btn-sm float-center'></th><th><input onclick='removeSwitches(" + sid + ")' type='button' name='Remove switch' id ='button2' value='Remove' class='btn btn-danger btn-sm float-right'></input></th></tr></thead></div></div>" );
             }
         }
     })
@@ -199,24 +194,6 @@ function editCaps(cid){
     $("#dCaps").toggle();
     var cid = cid;
     var caps = {"cid": cid};
-    // console.log("edit caps from id:");
-    // console.log(caps);
-    //     $.get("/getCapsId", {caps:caps}, function(error, result){
-    //         if(!error)
-    //         {
-    //             alert("did not remove caps");
-    //         } else {
-    //             console.log(error);
-    //             alert("error");
-    //         }
-    //         console.log("Here are the results in eC")
-    //         console.log(result)
-
-    //     })
-    // var name = $("#capName").val();
-    // var material = $("#material").val();
-    // var descriptionC = $("#descriptionC").val();
-    // var photo = $("#photoC").val();
     $("#editCaps_id").empty().append("<div class='panel-body'><div class='form-group'><input type='text' name='capName' id='capName' class='form-control input-sm' placeholder='Cap Name' required></div><div class='form-group'><input type='text' name='material' id='material' class='form-control input-sm' placeholder='Material' required></div><div class='form-group'><input type='text' name='descriptionC' id='descriptionC' class='form-control input-sm' placeholder='Description' required></div><div class='form-group'><input type='text' name='photoC' id='photoC' class='form-control input-sm' placeholder='Photo URL' required></div><input onclick='sendECapsInfo(" + cid + ")' name='Edit' value='Edit' class='btn btn-info btn-block'></div>")
     $("#eCaps").toggle();
 }
@@ -242,10 +219,67 @@ function sendECapsInfo(cid){
     $("#dCaps").toggle();
     $("#dCaps").toggle();
 }
+//////////////////////////////////////
+function editSwitch(sid){
+    $("#dSwitches").toggle();
+    var sid = sid;
+    var switches = {"sid": sid};
+    $("#editSwitch_id").empty().append("<div class='panel-body'><div class='form-group'><input type='text' name='switchName' id='switchName' class='form-control input-sm' placeholder='Switch Name' required></div><div class='form-group'><input type='text' name='typeS' id='typeS' class='form-control input-sm' placeholder='Type' required></div><div class='form-group'><input type='text' name='travel' id='travel' class='form-control input-sm' placeholder='Travel' required></div><div class='form-group'><input type='text' name='actuation' id='actuation' class='form-control input-sm' placeholder='Actuation' required></div><div class='form-group'><input type='text' name='bottomOut' id='bottomOut' class='form-control input-sm' placeholder='Bottom Out' required></div><div class='form-group'><input type='text' name='photo' id='photoS' class='form-control input-sm' placeholder='Photo URL' required></div><input onclick='sendESwitchesInfo("+sid+");' name='Edit' value='Edit' class='btn btn-info btn-block'></div>")
+    $("#eSwitch").toggle();
+}
 
-// function register(){
-//     $.post("/register", function(data){
-        
-//     })
-// }
+function sendESwitchesInfo(sid){
+    var name = $("#switchName").val();
+    var typeS = $("#typeS").val();
+    var travel = $("#travel").val();
+    var actuation = $("#actuation").val();
+    var bottomOut = $("#bottomOut").val();
+    var photoS = $("#photoS").val();
+    var sid = sid;
+    var switches = {"switchname": name, "types": typeS, "travel": travel, "actuation": actuation, "bottomout": bottomOut, "photos": photoS, "sid": sid };
+    $.post("/editSwitches", {switches, switches}, function(error, res){
+        if(!error)
+        {
+            alert("switches succesfully update");
+        } else {
+            console.log(error);
+            alert("error");
+        }
+    })
+    alert("Switch edited!");
+    $("#eSwitch").toggle();
+    $("#dSwitch").toggle();
+    $("#dSwitch").toggle();
+}
+
+function editKeyboard(kid){
+    $("#dKeyboard").toggle();
+    var kid = kid;
+    var keyboard = {"kid": kid};
+    $("#editKey_id").empty().append("<div class='panel-body'><div class='form-group'><input type='text' name='keyboardName' id='keyboardName' class='form-control input-sm' placeholder='Keyboard Name' required></div><div class='form-group'><input type='text' name='desc' id='desc' class='form-control input-sm' placeholder='Description' required></div><div class='form-group'><input type='text' name='switch' id='switch' class='form-control input-sm' placeholder='Switch' required></div><div class='form-group'><input type='text' name='size' id='size' class='form-control input-sm' placeholder='Size' required></div><div class='form-group'><input type='text' name='type' id='type' class='form-control input-sm' placeholder='Custom or Pre-Built' required></div><div class='form-group'><input type='text' name='photo' id='photo' class='form-control input-sm' placeholder='Photo URL' required></div><input onclick='sendEKeyboardInfo("+kid+");' name='Edit' value='Edit' class='btn btn-info btn-block'></div>")
+    $("#eKey").toggle();
+}
+
+function sendEKeyboardInfo(sid){
+    var name = $("#keyboardName").val();
+    var switchk = $("#type").val();
+    var size = $("#size").val();
+    var type = $("#type").val();
+    var description = $("#desc").val();
+    var photo = $("#photo").val();
+    var keyboard = {"keyboardname": name, "switch": switchk, "size": size, "typek": type, "descriptionk": description, "photo": photo, "kid": kid};
+    $.post("/editKeyboard", {keyboard, keyboard}, function(error, res){
+        if(!error)
+        {
+            alert("keyboard succesfully update");
+        } else {
+            console.log(error);
+            alert("error");
+        }
+    })
+    alert("Keyboard edited!");
+    $("#eKey").toggle();
+    $("#dKey").toggle();
+    $("#dKey").toggle();
+}
 

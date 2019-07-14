@@ -195,26 +195,39 @@ function editCapsDB(caps, callback){
     })
 }
 
-function getCapsIdDB(caps, callback){
-    console.log("in get caps id db")
-    var sql = "SELECT capName, material, descriptionC, photo, usernameC, cap_id FROM caps WHERE cap_id=($1)"
-    var params = [caps.cid];
-    pool.query(sql, params, function(error, db_info){
-        if(error){
-            console.log("Error in query caps: ")
-			console.log(error);
-			callback(error, null);
-        } 
-        else {
-            var result = {
-                    success:true,
-                    list:db_info.rows
-            }
-            console.log("caps id DB result: "+ JSON.stringify(db_info.rows))
-            callback(null, result);
+
+function editSwitchesDB(switches, callback){
+    var sql = "UPDATE switches SET switchName=($1), typeS=($2), travel=($3), actuation=($4), bottomOut=($5), photo=($6), usernameS=($7) WHERE switch_id=($8)";
+    var params = [switches.switchname, switches.types, switches.travel, switches.actuation, switches.bottomout,switches.photos, 'helloWorld1', switches.sid];
+    pool.query(sql, params, function(err,db_results){
+        if(err){
+            throw err;
+        } else {
+            var results = {
+                success:true,
+                list:db_results.rows
+            };
+            callback(null, results);
         }
     })
 }
+
+function editKeyboardDB(keyboard, callback){
+    var sql = "UPDATE keyboard SET keyboardName=($1), switch=($2), size=($3), typeK=($4), descriptionK=($5), photo=($6), usernameK=($7) WHERE keyboard_id=($8)";
+    var params = [keyboard.keyboardname, keyboard.switch, keyboard.size, keyboard.typek, keyboard.descriptionk, keyboard.photo, "helloWorld1", keyboard.kid];
+    pool.query(sql, params, function(err,db_results){
+        if(err){
+            throw err;
+        } else {
+            var results = {
+                success:true,
+                list:db_results.rows
+            };
+            callback(null, results);
+        }
+    })
+}
+
 
 module.exports = {
     getHomepageDB: getHomepageDB,
@@ -228,5 +241,6 @@ module.exports = {
     removeSwitchesDB: removeSwitchesDB,
     removeCapsDB: removeCapsDB,
     editCapsDB: editCapsDB,
-    getCapsIdDB: getCapsIdDB
+    editSwitchesDB: editSwitchesDB,
+    editKeyboardDB: editKeyboardDB
 };

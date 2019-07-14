@@ -127,6 +127,50 @@ function editCaps(req,res){
     });
 }
 
+function getSwitchesId(req,res){
+    const switches = req.body.switches
+    console.log("In get switches id controller")
+    homepageModel.getSwitchesIdDB(switches, function(error, result){
+        if (error || result == null) {
+            res.status(500).json({success: false, data: error});
+        } 
+        else{
+            res.json(result)
+        }
+    })
+}
+
+function editSwitches(req,res){
+    const switches = req.body.switches
+    console.log("In edit switches controller")
+    console.log(switches);
+    homepageModel.editSwitchesDB(switches, function(error, result){
+
+    });
+}
+
+function getKeyboardId(req,res){
+    const keyboard = req.body.keyboard
+    console.log("In get keyboard id controller")
+    homepageModel.getKeyboardIdDB(keyboard, function(error, result){
+        if (error || result == null) {
+            res.status(500).json({success: false, data: error});
+        } 
+        else{
+            res.json(result)
+        }
+    })
+}
+
+function editKeyboard(req,res){
+    const keyboard = req.body.keyboard
+    console.log("In edit kebyoard controller")
+    console.log(keyboard);
+    homepageModel.editKeyboardDB(keyboard, function(error, result){
+
+    });
+}
+
 module.exports = {
     getHomepage: getHomepage,
     getKeyboard: getKeyboard,
@@ -138,8 +182,10 @@ module.exports = {
     removeKeyboard: removeKeyboard,
     removeSwitches: removeSwitches,
     removeCaps: removeCaps,
-    editKeyboard: editKeyboard,
-    editSwitches: editSwitches,
     editCaps: editCaps,
-    getCapsId: getCapsId
+    getCapsId: getCapsId,
+    editSwitches: editSwitches,
+    getSwitchesId: getSwitchesId,
+    editKeyboard: editKeyboard,
+    getKeyboardId: getKeyboardId
 };

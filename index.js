@@ -30,6 +30,7 @@ app
   .post('/removeCaps', homepageController.removeCaps)
   .post('/editKeyboard', homepageController.editKeyboard)
   .post('/editCaps', homepageController.editCaps)
+  .post('/editSwitches', homepageController.editSwitches)
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))
 
     //.post('/register', accountController.register)
