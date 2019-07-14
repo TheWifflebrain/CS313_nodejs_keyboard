@@ -48,35 +48,6 @@ function displayCaps() {
             if(i == 0){
                 cid = caps.cap_id;
                 $("#displayCaps_id").empty().append("<div class='jumbotron text-center'><h1>" + caps.capname + "</a></h1></div><div class='keyList'><div id='capsImg'><img class='img-thumbnail mx-auto d-block img-fluid' src='" + caps.photo + "'></div><div><h4 id='descC'>" + caps.descriptionc + "</h4></div><div class='container'><table class='table table-striped'><thead><tr><th>Material</th></tr></thead><tbody><tr><td>" + caps.material + "</td></tr></tbody></table></div><div class='container'><table class='table'><thead><tr><th><input onclick='editCaps(" + cid + ")' name='Edit Caps' value='Edit Caps' class='btn btn-warning btn-sm float-center'></th><th><input onclick='removeCaps(" + cid + ")' type='button' name='Remove caps' id ='button3' value='Remove' class='btn btn-danger btn-sm float-right'></input></th></tr></thead></div></div>" );
-                // $("#displayCaps_id").find("td").each(function(){
-                //         $(this).click(function(){
-                //             $('td').not($(this)).prop('contenteditable', false);
-                //             $(this).prop('contenteditable', true);
-                            
-                //         });
-                //         $(this).blur(function() {
-                //             $(this).prop('contenteditable', false);
-                //           });
-                // });
-                // $("#displayCaps_id").find("#capsImg").each(function(){
-                //     $(this).click(function(){
-                //         $('#capsImg').not($(this)).prop('contenteditable', false);
-                //         $(this).prop('contenteditable', true);
-                //     });
-                //     $(this).blur(function() {
-                //         $(this).prop('contenteditable', false);
-                //       });
-                // });
-                // $("#displayCaps_id").find("#descC").each(function(){
-                //     $(this).click(function(){
-                //         $('#descC').not($(this)).prop('contenteditable', false);
-                //         $(this).prop('contenteditable', true);
-                //     });
-                //     $(this).blur(function() {
-                //         $(this).prop('contenteditable', false);
-                //       });
-                // });
-			    //$("#displayCaps_id").empty().append("<div class='jumbotron text-center'><h1>" + caps.capname + "</a></h1></div><div class='keyList'><div><img class='img-thumbnail mx-auto d-block img-fluid' src='" + caps.photo + "'></div><div><h4>" + caps.descriptionc + "</h4></div><div class='container'><table class='table table-striped'><thead><tr><th>Material</th></tr></thead><tbody><tr><td>" + caps.material + "</td></tr></tbody></table></div><div class='container'><table class='table'><thead><tr><th><input onclick='editCaps()' name='Edit Caps' value='Edit Caps' class='btn btn-warning btn-sm float-center'></th><th><input onclick='removeCaps(" + cid + ")' type='button' name='Remove caps' id ='button3' value='Remove' class='btn btn-danger btn-sm float-right'></input></th></tr></thead></div></div>" );
             }
             else{
                 cid = caps.cap_id;
@@ -226,29 +197,30 @@ function removeCaps(cid){
 
 function editCaps(cid){
     $("#dCaps").toggle();
-    var id = cid;
-    var caps = {"cid": id};
-    console.log("edit caps from id:");
-    console.log(caps);
-        $.get("/getCapsId", {caps:caps}, function(error, result){
-            if(!error)
-            {
-                alert("did not remove caps");
-            } else {
-                console.log(error);
-                alert("error");
-            }
-            console.log("Here are the results in eC")
-            console.log(result)
+    var cid = cid;
+    var caps = {"cid": cid};
+    // console.log("edit caps from id:");
+    // console.log(caps);
+    //     $.get("/getCapsId", {caps:caps}, function(error, result){
+    //         if(!error)
+    //         {
+    //             alert("did not remove caps");
+    //         } else {
+    //             console.log(error);
+    //             alert("error");
+    //         }
+    //         console.log("Here are the results in eC")
+    //         console.log(result)
 
-        })
-    var name = $("#capName").val();
-    var material = $("#material").val();
-    var descriptionC = $("#descriptionC").val();
-    var photo = $("#photoC").val();
-    $("#editCaps_id").empty().append("<div class='panel-body'><div class='form-group'><input type='text' name='capName' id='capName' class='form-control input-sm' placeholder='Cap Name' required></div><div class='form-group'><input type='text' name='material' id='material' class='form-control input-sm' placeholder='Material' required></div><div class='form-group'><input type='text' name='descriptionC' id='descriptionC' class='form-control input-sm' placeholder='Description' required></div><div class='form-group'><input type='text' name='photoC' id='photoC' class='form-control input-sm' placeholder='Photo URL' required></div><input onclick='sendECapsInfo(cid)' name='Edit' value='Edit' class='btn btn-info btn-block'></div>")
+    //     })
+    // var name = $("#capName").val();
+    // var material = $("#material").val();
+    // var descriptionC = $("#descriptionC").val();
+    // var photo = $("#photoC").val();
+    $("#editCaps_id").empty().append("<div class='panel-body'><div class='form-group'><input type='text' name='capName' id='capName' class='form-control input-sm' placeholder='Cap Name' required></div><div class='form-group'><input type='text' name='material' id='material' class='form-control input-sm' placeholder='Material' required></div><div class='form-group'><input type='text' name='descriptionC' id='descriptionC' class='form-control input-sm' placeholder='Description' required></div><div class='form-group'><input type='text' name='photoC' id='photoC' class='form-control input-sm' placeholder='Photo URL' required></div><input onclick='sendECapsInfo(" + cid + ")' name='Edit' value='Edit' class='btn btn-info btn-block'></div>")
     $("#eCaps").toggle();
 }
+
 function sendECapsInfo(cid){
     var id = cid;
     var name = $("#capName").val();

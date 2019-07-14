@@ -22,7 +22,6 @@ app
   .get('/getKeyboard', homepageController.getKeyboard)
   .get('/getSwitches', homepageController.getSwitches)
   .get('/getCaps', homepageController.getCaps)
-  .get('/getCapsId', homepageController.getCapsId)
   .post('/addKeyboard', homepageController.addKeyboard)
   .post('/addSwitches', homepageController.addSwitches)
   .post('/addCaps', homepageController.addCaps)
