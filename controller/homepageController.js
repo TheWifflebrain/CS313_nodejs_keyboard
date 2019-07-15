@@ -97,27 +97,6 @@ function removeCaps(req,res){
     });
 }
 
-function editKeyboard(req,res){
-    //const 
-}
-
-function editSwitches(req,res){
-    //const 
-}
-
-function getCapsId(req,res){
-    const caps = req.body.caps
-    console.log("In get caps id controller")
-    homepageModel.getCapsIdDB(caps, function(error, result){
-        if (error || result == null) {
-            res.status(500).json({success: false, data: error});
-        } 
-        else{
-            res.json(result)
-        }
-    })
-}
-
 function editCaps(req,res){
     const caps = req.body.caps
     console.log("In edit caps controller")
@@ -127,19 +106,6 @@ function editCaps(req,res){
     });
 }
 
-function getSwitchesId(req,res){
-    const switches = req.body.switches
-    console.log("In get switches id controller")
-    homepageModel.getSwitchesIdDB(switches, function(error, result){
-        if (error || result == null) {
-            res.status(500).json({success: false, data: error});
-        } 
-        else{
-            res.json(result)
-        }
-    })
-}
-
 function editSwitches(req,res){
     const switches = req.body.switches
     console.log("In edit switches controller")
@@ -147,19 +113,6 @@ function editSwitches(req,res){
     homepageModel.editSwitchesDB(switches, function(error, result){
 
     });
-}
-
-function getKeyboardId(req,res){
-    const keyboard = req.body.keyboard
-    console.log("In get keyboard id controller")
-    homepageModel.getKeyboardIdDB(keyboard, function(error, result){
-        if (error || result == null) {
-            res.status(500).json({success: false, data: error});
-        } 
-        else{
-            res.json(result)
-        }
-    })
 }
 
 function editKeyboard(req,res){
@@ -183,9 +136,6 @@ module.exports = {
     removeSwitches: removeSwitches,
     removeCaps: removeCaps,
     editCaps: editCaps,
-    getCapsId: getCapsId,
     editSwitches: editSwitches,
-    getSwitchesId: getSwitchesId,
-    editKeyboard: editKeyboard,
-    getKeyboardId: getKeyboardId
+    editKeyboard: editKeyboard
 };

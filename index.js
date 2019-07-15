@@ -33,11 +33,3 @@ app
   .post('/editSwitches', homepageController.editSwitches)
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))
 
-    //.post('/register', accountController.register)
-// app.use(session({
-//   cookieName: 'session',
-//   secret: 'zxc',
-//   duration: 30 * 60 * 1000,
-//   activeDuration: 5 * 60 * 1000,
-// }));
-

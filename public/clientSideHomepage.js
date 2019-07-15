@@ -192,10 +192,16 @@ function removeCaps(cid){
 
 function editCaps(cid){
     $("#dCaps").toggle();
-    var cid = cid;
-    var caps = {"cid": cid};
-    $("#editCaps_id").empty().append("<div class='panel-body'><div class='form-group'><input type='text' name='capName' id='capName' class='form-control input-sm' placeholder='Cap Name' required></div><div class='form-group'><input type='text' name='material' id='material' class='form-control input-sm' placeholder='Material' required></div><div class='form-group'><input type='text' name='descriptionC' id='descriptionC' class='form-control input-sm' placeholder='Description' required></div><div class='form-group'><input type='text' name='photoC' id='photoC' class='form-control input-sm' placeholder='Photo URL' required></div><input onclick='sendECapsInfo(" + cid + ")' name='Edit' value='Edit' class='btn btn-info btn-block'></div>")
-    $("#eCaps").toggle();
+    var id = cid;
+    $.get("/getCaps", function(data) {
+		for (var i = 0; i < data.list.length; i++) {
+            var caps = data.list[i];
+                if(id == caps.cap_id){
+                    $("#editCaps_id").empty().append("<div class='panel-body'><div class='form-group'><input type='text' name='capName' id='capName' class='form-control input-sm' value='"+caps.capname+"' placeholder='Cap Name' required></div><div class='form-group'><input type='text' name='material' id='material' class='form-control input-sm' value='"+caps.material+"' placeholder='Material' required></div><div class='form-group'><input type='text' name='descriptionC' id='descriptionC' class='form-control input-sm' value='"+caps.descriptionc+"' placeholder='Description' required></div><div class='form-group'><input type='text' name='photoC' id='photoC' class='form-control input-sm' value='"+caps.photo+"' placeholder='Photo URL' required></div><input onclick='sendECapsInfo(" + cid + ")' name='Edit' value='Edit' class='btn btn-info btn-block'></div>")
+                    $("#eCaps").toggle();
+                }
+        }
+    })
 }
 
 function sendECapsInfo(cid){
@@ -223,7 +229,6 @@ function sendECapsInfo(cid){
 function editSwitch(sid){
     $("#dSwitches").toggle();
     var sid = sid;
-    var switches = {"sid": sid};
     $("#editSwitch_id").empty().append("<div class='panel-body'><div class='form-group'><input type='text' name='switchName' id='switchName' class='form-control input-sm' placeholder='Switch Name' required></div><div class='form-group'><input type='text' name='typeS' id='typeS' class='form-control input-sm' placeholder='Type' required></div><div class='form-group'><input type='text' name='travel' id='travel' class='form-control input-sm' placeholder='Travel' required></div><div class='form-group'><input type='text' name='actuation' id='actuation' class='form-control input-sm' placeholder='Actuation' required></div><div class='form-group'><input type='text' name='bottomOut' id='bottomOut' class='form-control input-sm' placeholder='Bottom Out' required></div><div class='form-group'><input type='text' name='photo' id='photoS' class='form-control input-sm' placeholder='Photo URL' required></div><input onclick='sendESwitchesInfo("+sid+");' name='Edit' value='Edit' class='btn btn-info btn-block'></div>")
     $("#eSwitch").toggle();
 }
@@ -255,7 +260,6 @@ function sendESwitchesInfo(sid){
 function editKeyboard(kid){
     $("#dKeyboard").toggle();
     var kid = kid;
-    var keyboard = {"kid": kid};
     $("#editKey_id").empty().append("<div class='panel-body'><div class='form-group'><input type='text' name='keyboardName' id='keyboardName' class='form-control input-sm' placeholder='Keyboard Name' required></div><div class='form-group'><input type='text' name='desc' id='desc' class='form-control input-sm' placeholder='Description' required></div><div class='form-group'><input type='text' name='switch' id='switch' class='form-control input-sm' placeholder='Switch' required></div><div class='form-group'><input type='text' name='size' id='size' class='form-control input-sm' placeholder='Size' required></div><div class='form-group'><input type='text' name='type' id='type' class='form-control input-sm' placeholder='Custom or Pre-Built' required></div><div class='form-group'><input type='text' name='photo' id='photo' class='form-control input-sm' placeholder='Photo URL' required></div><input onclick='sendEKeyboardInfo("+kid+");' name='Edit' value='Edit' class='btn btn-info btn-block'></div>")
     $("#eKey").toggle();
 }
