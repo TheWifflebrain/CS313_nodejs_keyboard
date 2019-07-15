@@ -72,7 +72,7 @@ function addCaps(){
 //////////////////////
 function sendKeyboardInfo(){
     var name = $("#keyboardName").val();
-    var switchk = $("#type").val();
+    var switchk = $("#switch").val();
     var size = $("#size").val();
     var type = $("#type").val();
     var description = $("#desc").val();
@@ -281,7 +281,7 @@ function editKeyboard(kid){
 
 function sendEKeyboardInfo(sid){
     var name = $("#keyboardName").val();
-    var switchk = $("#type").val();
+    var switchk = $("#switch").val();
     var size = $("#size").val();
     var type = $("#type").val();
     var description = $("#desc").val();

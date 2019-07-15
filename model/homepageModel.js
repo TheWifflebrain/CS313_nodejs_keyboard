@@ -24,7 +24,7 @@ function getHomepageDB(callback){
 }
 
 function getKeyboardDB(callback){
-    var sql = "SELECT keyboardName, switch, size, typeK, descriptionK, photo, usernameK, keyboard_id FROM keyboard"
+    var sql = "SELECT keyboardName, switch, size, typeK, descriptionK, photo, usernameK, keyboard_id FROM keyboard ORDER BY keyboard_id"
     pool.query(sql, function(error, db_info){
         if(error){
             console.log("Error in query keyboard: ")
