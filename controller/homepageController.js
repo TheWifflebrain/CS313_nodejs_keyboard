@@ -117,7 +117,7 @@ function editSwitches(req,res){
 
 function editKeyboard(req,res){
     const keyboard = req.body.keyboard
-    console.log("In edit kebyoard controller")
+    console.log("In edit keyboard controller")
     console.log(keyboard);
     homepageModel.editKeyboardDB(keyboard, function(error, result){
 

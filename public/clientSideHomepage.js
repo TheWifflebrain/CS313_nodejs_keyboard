@@ -197,7 +197,7 @@ function editCaps(cid){
 		for (var i = 0; i < data.list.length; i++) {
             var caps = data.list[i];
                 if(id == caps.cap_id){
-                    $("#editCaps_id").empty().append("<div class='panel-body'><div class='form-group'><input type='text' name='capName' id='capName' class='form-control input-sm' value='"+caps.capname+"' placeholder='Cap Name' required></div><div class='form-group'><input type='text' name='material' id='material' class='form-control input-sm' value='"+caps.material+"' placeholder='Material' required></div><div class='form-group'><input type='text' name='descriptionC' id='descriptionC' class='form-control input-sm' value='"+caps.descriptionc+"' placeholder='Description' required></div><div class='form-group'><input type='text' name='photoC' id='photoC' class='form-control input-sm' value='"+caps.photo+"' placeholder='Photo URL' required></div><input onclick='sendECapsInfo(" + cid + ")' name='Edit' value='Edit' class='btn btn-info btn-block'></div>")
+                    $("#editCaps_id").empty().append("<div class='panel-body'><div class='form-group'><div>Name</div><input type='text' name='capName' id='capName' class='form-control input-sm' value='"+caps.capname+"' placeholder='Cap Name' required></div><div class='form-group'><div>Material</div><input type='text' name='material' id='material' class='form-control input-sm' value='"+caps.material+"' placeholder='Material' required></div><div class='form-group'><div>Description</div><input type='text' name='descriptionC' id='descriptionC' class='form-control input-sm' value='"+caps.descriptionc+"' placeholder='Description' required></div><div class='form-group'><div>Photo URL</div><input type='text' name='photoC' id='photoC' class='form-control input-sm' value='"+caps.photo+"' placeholder='Photo URL' required></div><input onclick='sendECapsInfo(" + cid + ")' name='Edit' value='Edit' class='btn btn-info btn-block'></div>")
                     $("#eCaps").toggle();
                 }
         }
@@ -233,7 +233,7 @@ function editSwitch(sid){
 		for (var i = 0; i < data.list.length; i++) {
             var switches = data.list[i];
                 if(sid == switches.switch_id){
-                    $("#editSwitch_id").empty().append("<div class='panel-body'><div class='form-group'><input type='text' name='switchName' id='switchName' class='form-control input-sm' value='"+switches.switchname+"' placeholder='Switch Name' required></div><div class='form-group'><input type='text' name='typeS' id='typeS' class='form-control input-sm' value='"+switches.types+"' placeholder='Type' required></div><div class='form-group'><input type='text' name='travel' id='travel' class='form-control input-sm' value='"+switches.travel+"' placeholder='Travel' required></div><div class='form-group'><input type='text' name='actuation' id='actuation' class='form-control input-sm' value='"+switches.actuation+"' placeholder='Actuation' required></div><div class='form-group'><input type='text' name='bottomOut' id='bottomOut' class='form-control input-sm' value='"+switches.bottomout+"' placeholder='Bottom Out' required></div><div class='form-group'><input type='text' name='photo' id='photoS' class='form-control input-sm' value='"+switches.photo+"' placeholder='Photo URL' required></div><input onclick='sendESwitchesInfo("+sid+");' name='Edit' value='Edit' class='btn btn-info btn-block'></div>")
+                    $("#editSwitch_id").empty().append("<div class='panel-body'><div class='form-group'><div>Name</div><input type='text' name='switchName' id='switchName' class='form-control input-sm' value='"+switches.switchname+"' placeholder='Switch Name' required></div><div class='form-group'><div>Type</div><input type='text' name='typeS' id='typeS' class='form-control input-sm' value='"+switches.types+"' placeholder='Type' required></div><div class='form-group'><div>Travel</div><input type='text' name='travel' id='travel' class='form-control input-sm' value='"+switches.travel+"' placeholder='Travel' required></div><div class='form-group'><div>Actuation</div><input type='text' name='actuation' id='actuation' class='form-control input-sm' value='"+switches.actuation+"' placeholder='Actuation' required></div><div>Bottom Out</div><div class='form-group'><input type='text' name='bottomOut' id='bottomOut' class='form-control input-sm' value='"+switches.bottomout+"' placeholder='Bottom Out' required></div><div class='form-group'><div>Photo URL</div><input type='text' name='photo' id='photoS' class='form-control input-sm' value='"+switches.photo+"' placeholder='Photo URL' required></div><input onclick='sendESwitchesInfo("+sid+");' name='Edit' value='Edit' class='btn btn-info btn-block'></div>")
                     $("#eSwitch").toggle();
                 }
             }
@@ -272,20 +272,21 @@ function editKeyboard(kid){
 		for (var i = 0; i < data.list.length; i++) {
             var keyboard = data.list[i];
                 if(kid == keyboard.keyboard_id){
-                    $("#editKey_id").empty().append("<div class='panel-body'><div class='form-group'><input type='text' name='keyboardName' id='keyboardName' class='form-control input-sm' value='"+keyboard.keyboardname+"' placeholder='Keyboard Name' required></div><div class='form-group'><input type='text' name='desc' id='desc' class='form-control input-sm' value='"+keyboard.descriptionk+"' placeholder='Description' required></div><div class='form-group'><input type='text' name='switch' id='switch' class='form-control input-sm' value='"+keyboard.switch+"' placeholder='Switch' required></div><div class='form-group'><input type='text' name='size' id='size' class='form-control input-sm' value='"+keyboard.size+"' placeholder='Size' required></div><div class='form-group'><input type='text' name='type' id='type' class='form-control input-sm' value='"+keyboard.typek+"' placeholder='Custom or Pre-Built' required></div><div class='form-group'><input type='text' name='photo' id='photo' class='form-control input-sm' value='"+keyboard.photo+"' placeholder='Photo URL' required></div><input onclick='sendEKeyboardInfo("+kid+");' name='Edit' value='Edit' class='btn btn-info btn-block'></div>")
+                    $("#editKey_id").empty().append("<div class='panel-body'><div class='form-group'><div>Name</div><input type='text' name='keyboardName' id='keyboardName' class='form-control input-sm' value='"+keyboard.keyboardname+"' placeholder='Keyboard Name' required></div><div>Description</div><div class='form-group'><input type='text' name='desc' id='desc' class='form-control input-sm' value='"+keyboard.descriptionk+"' placeholder='Description' required></div><div class='form-group'><div>Switch</div><input type='text' name='switch' id='switch' class='form-control input-sm' value='"+keyboard.switch+"' placeholder='Switch' required></div><div class='form-group'><div>Size</div><input type='text' name='size' id='size' class='form-control input-sm' value='"+keyboard.size+"' placeholder='Size' required></div><div class='form-group'><div>Custom or Pre-Built</div><input type='text' name='type' id='type' class='form-control input-sm' value='"+keyboard.typek+"' placeholder='Custom or Pre-Built' required></div><div class='form-group'><div>Photo URL</div><input type='text' name='photo' id='photo' class='form-control input-sm' value='"+keyboard.photo+"' placeholder='Photo URL' required></div><input onclick='sendEKeyboardInfo("+kid+")' name='Edit' value='Edit' class='btn btn-info btn-block'></div>")
                     $("#eKey").toggle();
                 }
         }
     })
 }
 
-function sendEKeyboardInfo(sid){
+function sendEKeyboardInfo(kid){
     var name = $("#keyboardName").val();
     var switchk = $("#switch").val();
     var size = $("#size").val();
     var type = $("#type").val();
     var description = $("#desc").val();
     var photo = $("#photo").val();
+    var kid = kid;
     var keyboard = {"keyboardname": name, "switch": switchk, "size": size, "typek": type, "descriptionk": description, "photo": photo, "kid": kid};
     $.post("/editKeyboard", {keyboard, keyboard}, function(error, res){
         if(!error)
