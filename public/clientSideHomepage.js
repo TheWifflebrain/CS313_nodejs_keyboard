@@ -7,11 +7,11 @@ function displayKeyboard() {
             var keyboard = data.list[i];
             if(i == 0){
                 kid = keyboard.keyboard_id;
-                $("#displayKeyboards_id").empty().append("<div class='jumbotron text-center'><h1>" + keyboard.keyboardname + "</a></h1></div><div class='keyList'><div><img class='img-thumbnail mx-auto d-block img-fluid' src='" + keyboard.photo + "'></div><div><h4>" + keyboard.descriptionk + "</h4></div><div class='container'><table class='table table-striped'><thead><tr><th>Switch</th><th>Type</th><th>Size</th></tr></thead><tbody><tr><td>" + keyboard.switch + "</td><td>" + keyboard.typek + "</td><td>" + keyboard.size + "</td></tr></tbody></table><div class='container'><table class='table'><thead><tr><th><input onclick='editKeyboard()' name='Edit Keyboard' value='Edit Keyboard' class='btn btn-warning btn-sm float-center'></th><th><input onclick='removeKeyboard(" + kid + ")' type='button' name='Remove keyboard' id ='button1' value='Remove' class='btn btn-danger btn-sm float-right'></input></th></tr></thead></div></div>" );
+                $("#displayKeyboards_id").empty().append("<div class='jumbotron text-center'><h1>" + keyboard.keyboardname + "</a></h1></div><div class='keyList'><div><img class='img-thumbnail mx-auto d-block img-fluid' src='" + keyboard.photo + "'></div><div><h4>" + keyboard.descriptionk + "</h4></div><div class='container'><table class='table table-striped'><thead><tr><th>Switch</th><th>Type</th><th>Size</th></tr></thead><tbody><tr><td>" + keyboard.switch + "</td><td>" + keyboard.typek + "</td><td>" + keyboard.size + "</td></tr></tbody></table><div class='container'><table class='table'><thead><tr><th><input onclick='editKeyboard("+kid+")' name='Edit Keyboard' value='Edit Keyboard' class='btn btn-warning btn-sm float-center'></th><th><input onclick='removeKeyboard(" + kid + ")' type='button' name='Remove keyboard' id ='button1' value='Remove' class='btn btn-danger btn-sm float-right'></input></th></tr></thead></div></div>" );
             }
             else{
                 kid = keyboard.keyboard_id;
-                $("#displayKeyboards_id").append("<div class='jumbotron text-center'><h1>" + keyboard.keyboardname + "</a></h1></div><div class='keyList'><div><img class='img-thumbnail mx-auto d-block img-fluid' src='" + keyboard.photo + "'></div><div><h4>" + keyboard.descriptionk + "</h4></div><div class='container'><table class='table table-striped'><thead><tr><th>Switch</th><th>Type</th><th>Size</th></tr></thead><tbody><tr><td>" + keyboard.switch + "</td><td>" + keyboard.typek + "</td><td>" + keyboard.size + "</td></tr></tbody></table></div><div class='container'><table class='table'><thead><tr><th><input onclick='editKeyboard()' name='Edit Keyboard' value='Edit Keyboard' class='btn btn-warning btn-sm float-center'></th><th><input onclick='removeKeyboard(" + kid + ")' id='button1' type='button' name='Remove keyboard' value='Remove' class='btn btn-danger btn-sm float-right'></input></th></tr></thead></div></div>" );
+                $("#displayKeyboards_id").append("<div class='jumbotron text-center'><h1>" + keyboard.keyboardname + "</a></h1></div><div class='keyList'><div><img class='img-thumbnail mx-auto d-block img-fluid' src='" + keyboard.photo + "'></div><div><h4>" + keyboard.descriptionk + "</h4></div><div class='container'><table class='table table-striped'><thead><tr><th>Switch</th><th>Type</th><th>Size</th></tr></thead><tbody><tr><td>" + keyboard.switch + "</td><td>" + keyboard.typek + "</td><td>" + keyboard.size + "</td></tr></tbody></table></div><div class='container'><table class='table'><thead><tr><th><input onclick='editKeyboard("+kid+")' name='Edit Keyboard' value='Edit Keyboard' class='btn btn-warning btn-sm float-center'></th><th><input onclick='removeKeyboard(" + kid + ")' id='button1' type='button' name='Remove keyboard' value='Remove' class='btn btn-danger btn-sm float-right'></input></th></tr></thead></div></div>" );
             }
         }
     })
@@ -229,8 +229,15 @@ function sendECapsInfo(cid){
 function editSwitch(sid){
     $("#dSwitches").toggle();
     var sid = sid;
-    $("#editSwitch_id").empty().append("<div class='panel-body'><div class='form-group'><input type='text' name='switchName' id='switchName' class='form-control input-sm' placeholder='Switch Name' required></div><div class='form-group'><input type='text' name='typeS' id='typeS' class='form-control input-sm' placeholder='Type' required></div><div class='form-group'><input type='text' name='travel' id='travel' class='form-control input-sm' placeholder='Travel' required></div><div class='form-group'><input type='text' name='actuation' id='actuation' class='form-control input-sm' placeholder='Actuation' required></div><div class='form-group'><input type='text' name='bottomOut' id='bottomOut' class='form-control input-sm' placeholder='Bottom Out' required></div><div class='form-group'><input type='text' name='photo' id='photoS' class='form-control input-sm' placeholder='Photo URL' required></div><input onclick='sendESwitchesInfo("+sid+");' name='Edit' value='Edit' class='btn btn-info btn-block'></div>")
-    $("#eSwitch").toggle();
+    $.get("/getSwitches", function(data) {
+		for (var i = 0; i < data.list.length; i++) {
+            var switches = data.list[i];
+                if(sid == switches.switch_id){
+                    $("#editSwitch_id").empty().append("<div class='panel-body'><div class='form-group'><input type='text' name='switchName' id='switchName' class='form-control input-sm' value='"+switches.switchname+"' placeholder='Switch Name' required></div><div class='form-group'><input type='text' name='typeS' id='typeS' class='form-control input-sm' value='"+switches.types+"' placeholder='Type' required></div><div class='form-group'><input type='text' name='travel' id='travel' class='form-control input-sm' value='"+switches.travel+"' placeholder='Travel' required></div><div class='form-group'><input type='text' name='actuation' id='actuation' class='form-control input-sm' value='"+switches.actuation+"' placeholder='Actuation' required></div><div class='form-group'><input type='text' name='bottomOut' id='bottomOut' class='form-control input-sm' value='"+switches.bottomout+"' placeholder='Bottom Out' required></div><div class='form-group'><input type='text' name='photo' id='photoS' class='form-control input-sm' value='"+switches.photo+"' placeholder='Photo URL' required></div><input onclick='sendESwitchesInfo("+sid+");' name='Edit' value='Edit' class='btn btn-info btn-block'></div>")
+                    $("#eSwitch").toggle();
+                }
+            }
+    })
 }
 
 function sendESwitchesInfo(sid){
@@ -260,8 +267,16 @@ function sendESwitchesInfo(sid){
 function editKeyboard(kid){
     $("#dKeyboard").toggle();
     var kid = kid;
-    $("#editKey_id").empty().append("<div class='panel-body'><div class='form-group'><input type='text' name='keyboardName' id='keyboardName' class='form-control input-sm' placeholder='Keyboard Name' required></div><div class='form-group'><input type='text' name='desc' id='desc' class='form-control input-sm' placeholder='Description' required></div><div class='form-group'><input type='text' name='switch' id='switch' class='form-control input-sm' placeholder='Switch' required></div><div class='form-group'><input type='text' name='size' id='size' class='form-control input-sm' placeholder='Size' required></div><div class='form-group'><input type='text' name='type' id='type' class='form-control input-sm' placeholder='Custom or Pre-Built' required></div><div class='form-group'><input type='text' name='photo' id='photo' class='form-control input-sm' placeholder='Photo URL' required></div><input onclick='sendEKeyboardInfo("+kid+");' name='Edit' value='Edit' class='btn btn-info btn-block'></div>")
-    $("#eKey").toggle();
+    console.log(kid)
+    $.get("/getKeyboard", function(data) {
+		for (var i = 0; i < data.list.length; i++) {
+            var keyboard = data.list[i];
+                if(kid == keyboard.keyboard_id){
+                    $("#editKey_id").empty().append("<div class='panel-body'><div class='form-group'><input type='text' name='keyboardName' id='keyboardName' class='form-control input-sm' value='"+keyboard.keyboardname+"' placeholder='Keyboard Name' required></div><div class='form-group'><input type='text' name='desc' id='desc' class='form-control input-sm' value='"+keyboard.descriptionk+"' placeholder='Description' required></div><div class='form-group'><input type='text' name='switch' id='switch' class='form-control input-sm' value='"+keyboard.switch+"' placeholder='Switch' required></div><div class='form-group'><input type='text' name='size' id='size' class='form-control input-sm' value='"+keyboard.size+"' placeholder='Size' required></div><div class='form-group'><input type='text' name='type' id='type' class='form-control input-sm' value='"+keyboard.typek+"' placeholder='Custom or Pre-Built' required></div><div class='form-group'><input type='text' name='photo' id='photo' class='form-control input-sm' value='"+keyboard.photo+"' placeholder='Photo URL' required></div><input onclick='sendEKeyboardInfo("+kid+");' name='Edit' value='Edit' class='btn btn-info btn-block'></div>")
+                    $("#eKey").toggle();
+                }
+        }
+    })
 }
 
 function sendEKeyboardInfo(sid){
@@ -283,7 +298,7 @@ function sendEKeyboardInfo(sid){
     })
     alert("Keyboard edited!");
     $("#eKey").toggle();
-    $("#dKey").toggle();
-    $("#dKey").toggle();
+    $("#dKeyboard").toggle();
+    $("#dKeyboard").toggle();
 }
 
