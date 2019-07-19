@@ -13,6 +13,8 @@ function displayAll(){
       });
 
     $("#searchSpace").empty().append("<input id='searchInput' type='text' placeholder='Search Database'>")
+    $("#allSp").toggle();
+
     $.get("/getKeyboard", function(data) {
         for (var i = 0; i < data.list.length; i++) {
             var keyboard = data.list[i];
