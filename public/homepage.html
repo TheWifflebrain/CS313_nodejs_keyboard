@@ -11,28 +11,11 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
     <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
-
-    <script>
-        $(document).ready(function(){
-          $("#myInput").on("keyup", function() {
-            var value = $(this).val().toLowerCase();
-            $("#myDIV *").filter(function() {
-              $(this).toggle($("#myDIV *").text().toLowerCase().indexOf(value) > -1)
-            });
-          });
-        });
-    </script>
     <title>Document</title>
 </head>
 <body>
     <h1 class="jumbotron text-center jumbo">My Keyboard Collection</h1>
     <input class="text-right" id="mode" type="checkbox" checked data-toggle="toggle" data-style="ios" data-on="Light Mode" data-off="Dark Mode" data-onstyle="light" onchange="changeCSS()">
-
-    <div class="row">
-        <div class="col"><input id="myInput" type="text" placeholder="Search Keyboards"></div>
-        <div class="col"><input id="myInput2" type="text" placeholder="Search Switches"></div>
-        <div class="col"><input id="myInput3" type="text" placeholder="Search Caps"></div>
-    </div>
 
     <div class="row">
         <div class="col"><button class="btn btn-info btn-block" id="getKeyboard" onclick="displayKeyboard()">Display Keyboard From Oldest to Newest</button></div>
@@ -52,6 +35,23 @@
         <div class="col"><button class="btn btn-info btn-block" id="addSwitch" onclick="addSwitches()">Add Switch</button></div>
         <div class="col"><button class="btn btn-info btn-block" id="addCaps" onclick="addCaps()">Add Caps</button></div>
       </div>
+    </div>
+
+    </br>
+
+    <div><button class="btn btn-info btn-block" id="displayAll" onclick="displayAll()">Display All In Tables</button></div>
+    <div id="searchSpace"></div>
+    <div class="hide" id="allKeys">
+        <ul id="allKeysT_id"></ul>
+        <ul id="allKeys_id"></ul>
+    </div>
+    <div class="hide" id="allSwitches">
+        <ul id="allSwitchesT_id"></ul>
+        <ul id="allSwitches_id"></ul>
+    </div>
+    <div class="hide" id="allCaps">
+        <ul id="allCapsT_id"></ul>
+        <ul id="allCaps_id"></ul>
     </div>
 
     <div class="hide" id="aKeyboard">

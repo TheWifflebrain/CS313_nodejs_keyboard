@@ -2,6 +2,67 @@ var kid;
 var sid;
 var cid;
 
+function displayAll(){
+    $(document).ready(function(){
+        $("#searchInput").on("keyup", function() {
+          var value = $(this).val().toLowerCase();
+          $("#myTable tr").filter(function() {
+            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+          });
+        });
+      });
+
+    $("#searchSpace").empty().append("<input id='searchInput' type='text' placeholder='Search Database'>")
+    $.get("/getKeyboard", function(data) {
+        for (var i = 0; i < data.list.length; i++) {
+            var keyboard = data.list[i];
+            if(i == 0){
+                $("#allKeys_id").empty().append("<div class='container darktable'><table class='table table-striped'><thead><tr><th>Keyboard Name</th><th>Switch</th><th>Size</th><th>Type</th><th>Description</th></tr></thead><tbody id='myTable'><tr><td>" + keyboard.keyboardname + "</td><td>"+keyboard.switch+"</td><td>"+keyboard.size+"</td><td>"+keyboard.typek+"</td><td>" + keyboard.descriptionk + "</td></tr>")
+            }
+            else if(i != 0 && i < data.list.length - 1){
+                $("#allKeys_id tr:last").after("<tr><td>" + keyboard.keyboardname + "</td><td>"+keyboard.switch+"</td><td>"+keyboard.size+"</td><td>"+keyboard.typek+"</td><td>" + keyboard.descriptionk + "</td></tr>" )
+            }
+            else if(i == data.list.length - 1){
+                $("#allKeys_id tr:last").after("<tr><td>" + keyboard.keyboardname + "</td><td>"+keyboard.switch+"</td><td>"+keyboard.size+"</td><td>"+keyboard.typek+"</td><td>" + keyboard.descriptionk + "</td></tr></tbody></table></div>" )
+            }
+        }
+    })
+    $("#allKeys").toggle();
+
+
+    $.get("/getSwitches", function(data) {
+		for (var i = 0; i < data.list.length; i++) {
+            var switches = data.list[i];
+            if(i == 0){
+                $("#allSwitches_id").empty().append("<div class='container darktable'><table class='table table-striped'><thead><tr><th>Switch Name</th><th>Type</th><th>Travel</th><th>Actuation</th><th>Bottom Out</th></tr></thead><tbody id='myTable'><tr><td>" + switches.switchname + "</td><td>"+switches.types+"</td><td>"+switches.travel+"</td><td>"+switches.actuation+"</td><td>" + switches.bottomout + "</td></tr>")
+            }
+            else if(i != 0 && i < data.list.length - 1){
+                $("#allSwitches_id tr:last").after("<tr><td>" + switches.switchname + "</td><td>"+switches.types+"</td><td>"+switches.travel+"</td><td>"+switches.actuation+"</td><td>" + switches.bottomout + "</td></tr>" )
+            }
+            else if(i == data.list.length - 1){
+                $("#allSwitches_id tr:last").after("<tr><td>" + switches.switchname + "</td><td>"+switches.types+"</td><td>"+switches.travel+"</td><td>"+switches.actuation+"</td><td>" + switches.bottomout + "</td></tr></tbody></table></div>" )
+            }
+        }
+    })
+    $("#allSwitches").toggle();
+
+    $.get("/getCaps", function(data) {
+		for (var i = 0; i < data.list.length; i++) {
+            var caps = data.list[i];
+            if(i == 0){
+                $("#allCaps_id").empty().append("<div class='container darktable'><table class='table table-striped'><thead><tr><th>Cap Name</th><th>Material</th><th>Description</th></tr></thead><tbody id='myTable'><tr><td>" + caps.capname + "</td><td>"+caps.material+"</td><td>"+caps.descriptionc+"</td></tr>")
+            }
+            else if(i != 0 && i < data.list.length - 1){
+                $("#allCaps_id tr:last").after("<tr><td>" + caps.capname + "</td><td>"+caps.material+"</td><td>"+caps.descriptionc+"</td></tr>" )
+            }
+            else if(i == data.list.length - 1){
+                $("#allCaps_id tr:last").after("<tr><td>" + caps.capname + "</td><td>"+caps.material+"</td><td>"+caps.descriptionc+"</td></tr></tbody></table></div>" )
+            }
+        }
+    })
+    $("#allCaps").toggle();
+}
+
 function swapStyleSheet(sheet) {
     document.getElementById("pagestyle").setAttribute("href", sheet);  
 }
@@ -14,7 +75,6 @@ function changeCSS() {
         dark = swapStyleSheet("../stylesheets/cssdark.css");
     }
 }
-
 
 function displayKeyboard() {    
 	$.get("/getKeyboard", function(data) {
@@ -66,7 +126,7 @@ function displayCaps() {
     })
     $("#dCaps").toggle();
 }
-//////
+
 function alphaKeyboard() {    
 	$.get("/getalphaKeyboard", function(data) {
         for (var i = 0; i < data.list.length; i++) {
@@ -83,7 +143,6 @@ function alphaKeyboard() {
     })
     $("#dKeyboard").toggle();
 }
-
 
 function alphaSwitches() {
 	$.get("/getalphaSwitches", function(data) {
@@ -119,7 +178,6 @@ function alphaCaps() {
     $("#dCaps").toggle();
 }
 
-/////////////////////
 function addKeyboard(){
     $("#addKeyboards_id").empty().append("<div class='panel-body'><div class='form-group'><input type='text' name='keyboardName' id='keyboardName' class='form-control input-sm' placeholder='Keyboard Name' required></div><div class='form-group'><input type='text' name='desc' id='desc' class='form-control input-sm' placeholder='Description' required></div><div class='form-group'><input type='text' name='switch' id='switch' class='form-control input-sm' placeholder='Switch' required></div><div class='form-group'><input type='text' name='size' id='size' class='form-control input-sm' placeholder='Size' required></div><div class='form-group'><input type='text' name='type' id='type' class='form-control input-sm' placeholder='Custom or Pre-Built' required></div><div class='form-group'><input type='text' name='photo' id='photo' class='form-control input-sm' placeholder='Photo URL' required></div><input onclick='sendKeyboardInfo();' name='Add' value='Add' class='btn btn-info btn-block'></div>")
     $("#aKeyboard").toggle();
@@ -135,7 +193,6 @@ function addCaps(){
     $("#aCaps").toggle();
 }
 
-//////////////////////
 function sendKeyboardInfo(){
     var name = $("#keyboardName").val();
     var switchk = $("#switch").val();
@@ -149,7 +206,6 @@ function sendKeyboardInfo(){
         {
             alert("keyboard succesfully created");
         } else {
-            console.log(error);
             alert("error");
         }
     })
@@ -171,7 +227,6 @@ function sendSwitchesInfo(){
         {
             alert("Switch succesfully created");
         } else {
-            console.log(error);
             alert("error");
         }
     })
@@ -191,7 +246,6 @@ function sendCapsInfo(){
         {
             alert("caps succesfully created");
         } else {
-            console.log(error);
             alert("error");
         }
     })
@@ -200,17 +254,14 @@ function sendCapsInfo(){
 
 }
 
-////////////////
 function removeKeyboard(kid){
     var kids = {"kid": kid};
-    console.log(kids);
     if(window.confirm("Are you sure you want to delete that keyboard?")){
         $.post("/removeKeyboard", {kids:kids}, function(error, res){
             if(!error)
             {
                 alert("did not remove keyboard");
             } else {
-                console.log(error);
                 alert("error");
             }
 
@@ -221,14 +272,12 @@ function removeKeyboard(kid){
 
 function removeSwitches(sid){
     var sids = {"sid": sid};
-    console.log(sids);
     if(window.confirm("Are you sure you want to delete those switches?")){
         $.post("/removeSwitches", {sids:sids}, function(error, res){
             if(!error)
             {
                 alert("did not remove switches");
             } else {
-                console.log(error);
                 alert("error");
             }
 
@@ -239,15 +288,12 @@ function removeSwitches(sid){
 
 function removeCaps(cid){
     var cids = {"cid": cid};
-    console.log("remove caps client side")
-    console.log(cids);
     if(window.confirm("Are you sure you want to delete those caps?")){
         $.post("/removeCaps", {cids:cids}, function(error, res){
             if(!error)
             {
                 alert("did not remove caps");
             } else {
-                console.log(error);
                 alert("error");
             }
 
@@ -282,7 +328,6 @@ function sendECapsInfo(cid){
         {
             alert("caps succesfully update");
         } else {
-            console.log(error);
             alert("error");
         }
     })
@@ -291,7 +336,7 @@ function sendECapsInfo(cid){
     $("#dCaps").toggle();
     $("#dCaps").toggle();
 }
-//////////////////////////////////////
+
 function editSwitch(sid){
     $("#dSwitches").toggle();
     var sid = sid;
@@ -320,7 +365,6 @@ function sendESwitchesInfo(sid){
         {
             alert("switches succesfully update");
         } else {
-            console.log(error);
             alert("error");
         }
     })
@@ -333,7 +377,6 @@ function sendESwitchesInfo(sid){
 function editKeyboard(kid){
     $("#dKeyboard").toggle();
     var kid = kid;
-    console.log(kid)
     $.get("/getKeyboard", function(data) {
 		for (var i = 0; i < data.list.length; i++) {
             var keyboard = data.list[i];
@@ -359,7 +402,6 @@ function sendEKeyboardInfo(kid){
         {
             alert("keyboard succesfully update");
         } else {
-            console.log(error);
             alert("error");
         }
     })

@@ -252,7 +252,6 @@ function editCapsDB(caps, callback){
     })
 }
 
-
 function editSwitchesDB(switches, callback){
     var sql = "UPDATE switches SET switchName=($1), typeS=($2), travel=($3), actuation=($4), bottomOut=($5), photo=($6), usernameS=($7) WHERE switch_id=($8)";
     var params = [switches.switchname, switches.types, switches.travel, switches.actuation, switches.bottomout,switches.photos, 'helloWorld1', switches.sid];
@@ -284,7 +283,6 @@ function editKeyboardDB(keyboard, callback){
         }
     })
 }
-
 
 module.exports = {
     getHomepageDB: getHomepageDB,

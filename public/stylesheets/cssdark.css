@@ -77,6 +77,7 @@
 
   body {
     background-color: black;
+    padding: 10px 30px 10px 30px;
   }
 
   table {
@@ -103,7 +104,7 @@ h2{
 .darktable{
     color: darkgrey;
     background-color: darkgrey;
-    border: darkgrey
+    border: darkgrey;
 }
 
 tr{
@@ -115,6 +116,11 @@ th{
 td{
     background-color: white;
 }
+#searchInput{
+  background-color: black;
+  color: white;
+}
+
 
   .toggle.ios, .toggle-on.ios, .toggle-off.ios { border-radius: 20px; }
   .toggle.ios .toggle-handle { border-radius: 20px; }
