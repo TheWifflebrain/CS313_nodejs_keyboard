@@ -1,6 +1,5 @@
 const express = require('express')
 const app = express()
-const session = require('express-session');
 const path = require('path')
 const PORT = process.env.PORT || 5000
 require('dotenv').config();
@@ -8,8 +7,6 @@ const { Pool } = require("pg")
 const connectionString = process.env.DATABASE_URL ||  process.env.DATABASE_URL1;
 const pool = new Pool({connectionString: connectionString});
 const homepageController = require("./controller/homepageController.js");
-//const accountController = require("./controller/accountController.js");
-
 
 app
   .use(express.static(path.join(__dirname, 'public')))
@@ -22,6 +19,9 @@ app
   .get('/getKeyboard', homepageController.getKeyboard)
   .get('/getSwitches', homepageController.getSwitches)
   .get('/getCaps', homepageController.getCaps)
+  .get('/getalphaKeyboard', homepageController.getalphaKeyboard)
+  .get('/getalphaSwitches', homepageController.getalphaSwitches)
+  .get('/getalphaCaps', homepageController.getalphaCaps)
   .post('/addKeyboard', homepageController.addKeyboard)
   .post('/addSwitches', homepageController.addSwitches)
   .post('/addCaps', homepageController.addCaps)

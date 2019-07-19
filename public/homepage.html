@@ -5,20 +5,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="../stylesheets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../stylesheets/main.css">
+    <link rel="shortcut icon" type="image/png" href="favicon.png">
+    <link id="pagestyle" rel="stylesheet" href="../stylesheets/main.css">
     <script src="clientSideHomepage.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+    <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+
+    <script>
+        $(document).ready(function(){
+          $("#myInput").on("keyup", function() {
+            var value = $(this).val().toLowerCase();
+            $("#myDIV *").filter(function() {
+              $(this).toggle($("#myDIV *").text().toLowerCase().indexOf(value) > -1)
+            });
+          });
+        });
+    </script>
     <title>Document</title>
 </head>
 <body>
-    <h1 class="jumbotron text-center jumbo">Homepage</h1>
+    <h1 class="jumbotron text-center jumbo">My Keyboard Collection</h1>
+    <input class="text-right" id="mode" type="checkbox" checked data-toggle="toggle" data-style="ios" data-on="Light Mode" data-off="Dark Mode" data-onstyle="light" onchange="changeCSS()">
 
     <div class="row">
-        <div class="col"><button class="btn btn-info btn-block" id="getKeyboard" onclick="displayKeyboard()">Display Keyboard</button></div>
-        <div class="col"><button class="btn btn-info btn-block" id="getSwitch" onclick="displaySwitches()">Display Switch</button></div>
-        <div class="col"><button class="btn btn-info btn-block" id="getCaps" onclick="displayCaps()">Display Caps</button></div>
-      </div>
+        <div class="col"><input id="myInput" type="text" placeholder="Search Keyboards"></div>
+        <div class="col"><input id="myInput2" type="text" placeholder="Search Switches"></div>
+        <div class="col"><input id="myInput3" type="text" placeholder="Search Caps"></div>
     </div>
+
+    <div class="row">
+        <div class="col"><button class="btn btn-info btn-block" id="getKeyboard" onclick="displayKeyboard()">Display Keyboard From Oldest to Newest</button></div>
+        <div class="col"><button class="btn btn-info btn-block" id="getSwitch" onclick="displaySwitches()">Display Switch From Oldest to Newest</button></div>
+        <div class="col"><button class="btn btn-info btn-block" id="getCaps" onclick="displayCaps()">Display Caps From Oldest to Newest</button></div>
+    </div>
+
+    </div>
+    <div class="row">
+        <div class="col"><button class="btn btn-info btn-block" id="alphaKeyboard" onclick="alphaKeyboard()">Display Keyboard Alphabetically</button></div>
+        <div class="col"><button class="btn btn-info btn-block" id="alphaSwitch" onclick="alphaSwitches()">Display Switch Alphabetically</button></div>
+        <div class="col"><button class="btn btn-info btn-block" id="alphaCaps" onclick="alphaCaps()">Display Caps Alphabetically</button></div>
+      </div>
+
     <div class="row">
         <div class="col"><button class="btn btn-info btn-block" id="addKeyboard" onclick="addKeyboard()">Add Keyboard</button></div>
         <div class="col"><button class="btn btn-info btn-block" id="addSwitch" onclick="addSwitches()">Add Switch</button></div>
@@ -31,11 +59,13 @@
         <ul id="addKeyboards_id">
         </ul>
     </div>
+
     <div class="hide" id="aSwitches">
         <h2 class="text-center">Add Switch</h2>
         <ul id="addSwitches_id">
         </ul>
     </div>
+
     <div class="hide" id="aCaps">
         <h2 class="text-center">Add Caps</h2>
         <ul id="addCaps_id">
@@ -60,7 +90,6 @@
         </ul>
     </div>
     
-
     <div class="hide" id="dKeyboard">
         <h2 class="text-center">Results For Keyboards</h2>
         <ul id="displayKeyboards_id">

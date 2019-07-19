@@ -80,6 +80,63 @@ function getCapsDB(callback){
     })
 }
 /*---------------------------------------------------------------------*/
+function getalphaKeyboardDB(callback){
+    var sql = "SELECT keyboardName, switch, size, typeK, descriptionK, photo, usernameK, keyboard_id FROM keyboard ORDER BY keyboardName"
+    pool.query(sql, function(error, db_info){
+        if(error){
+            console.log("Error in query keyboard: ")
+			console.log(error);
+			callback(error, null);
+        } 
+        else {
+            var result = {
+                    success:true,
+                    list:db_info.rows
+            }
+            console.log("keyboard DB result: "+ JSON.stringify(db_info.rows))
+            callback(null, result);
+        }
+    })
+}
+
+function getalphaSwitchesDB(callback){
+    var sql = "SELECT switchName, typeS, travel, actuation, bottomOut, photo, usernameS, switch_id FROM switches ORDER BY switchName"
+    pool.query(sql, function(error, db_info){
+        if(error){
+            console.log("Error in query switches: ")
+			console.log(error);
+			callback(error, null);
+        } 
+        else {
+            var result = {
+                    success:true,
+                    list:db_info.rows
+            }
+            console.log("switches DB result: "+ JSON.stringify(db_info.rows))
+            callback(null, result);
+        }
+    })
+}
+
+function getalphaCapsDB(callback){
+    var sql = "SELECT capName, material, descriptionC, photo, usernameC, cap_id FROM caps ORDER BY capName"
+    pool.query(sql, function(error, db_info){
+        if(error){
+            console.log("Error in query caps: ")
+			console.log(error);
+			callback(error, null);
+        } 
+        else {
+            var result = {
+                    success:true,
+                    list:db_info.rows
+            }
+            console.log("caps DB result: "+ JSON.stringify(db_info.rows))
+            callback(null, result);
+        }
+    })
+}
+/*---------------------------------------------------------------------*/
 function addKeyboardDB(keyboard, callback){
     var sql = "INSERT INTO keyboard(keyboardName, switch, size, typeK, descriptionK, photo, usernameK) VALUES($1, $2, $3, $4, $5, $6, $7)";
     var params = [keyboard.keyboardname, keyboard.switch, keyboard.size, keyboard.typek, keyboard.descriptionk, keyboard.photo, "helloWorld1"];
@@ -234,6 +291,9 @@ module.exports = {
     getKeyboardDB: getKeyboardDB,
     getSwitchesDB: getSwitchesDB,
     getCapsDB: getCapsDB,
+    getalphaKeyboardDB: getalphaKeyboardDB,
+    getalphaSwitchesDB: getalphaSwitchesDB,
+    getalphaCapsDB: getalphaCapsDB,
     addKeyboardDB: addKeyboardDB,
     addSwitchesDB: addSwitchesDB,
     addCapsDB: addCapsDB,

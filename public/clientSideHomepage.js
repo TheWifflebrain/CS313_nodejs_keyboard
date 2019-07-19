@@ -1,23 +1,37 @@
 var kid;
 var sid;
 var cid;
+
+function swapStyleSheet(sheet) {
+    document.getElementById("pagestyle").setAttribute("href", sheet);  
+}
+
+function changeCSS() {
+    if(document.getElementById("mode").checked){
+        light = swapStyleSheet("../stylesheets/main.css");
+    }
+    else{
+        dark = swapStyleSheet("../stylesheets/cssdark.css");
+    }
+}
+
+
 function displayKeyboard() {    
 	$.get("/getKeyboard", function(data) {
         for (var i = 0; i < data.list.length; i++) {
             var keyboard = data.list[i];
             if(i == 0){
                 kid = keyboard.keyboard_id;
-                $("#displayKeyboards_id").empty().append("<div class='jumbotron text-center'><h1>" + keyboard.keyboardname + "</a></h1></div><div class='keyList'><div><img class='img-thumbnail mx-auto d-block img-fluid' src='" + keyboard.photo + "'></div><div><h4>" + keyboard.descriptionk + "</h4></div><div class='container'><table class='table table-striped'><thead><tr><th>Switch</th><th>Type</th><th>Size</th></tr></thead><tbody><tr><td>" + keyboard.switch + "</td><td>" + keyboard.typek + "</td><td>" + keyboard.size + "</td></tr></tbody></table><div class='container'><table class='table'><thead><tr><th><input onclick='editKeyboard("+kid+")' name='Edit Keyboard' value='Edit Keyboard' class='btn btn-warning btn-sm float-center'></th><th><input onclick='removeKeyboard(" + kid + ")' type='button' name='Remove keyboard' id ='button1' value='Remove' class='btn btn-danger btn-sm float-right'></input></th></tr></thead></div></div>" );
+                $("#displayKeyboards_id").empty().append("<div id='myDIV'><div class='jumbotron text-center'><h1>" + keyboard.keyboardname + "</a></h1></div><div class='keyList'><div><img class='img-thumbnail mx-auto d-block img-fluid darkphoto' src='" + keyboard.photo + "'></div><div><h4>" + keyboard.descriptionk + "</h4></div><div class='container darktable'><table class='table table-striped'><thead><tr><th>Switch</th><th>Type</th><th>Size</th></tr></thead><tbody><tr><td>" + keyboard.switch + "</td><td>" + keyboard.typek + "</td><td>" + keyboard.size + "</td></tr></tbody></table><div class='container'><table class='table'><thead><tr><th><input onclick='editKeyboard("+kid+")' name='Edit Keyboard' value='Edit Keyboard' class='btn btn-warning btn-sm float-center'></th><th><input onclick='removeKeyboard(" + kid + ")' type='button' name='Remove keyboard' id ='button1' value='Remove' class='btn btn-danger btn-sm float-right'></input></th></tr></thead></div></div></div>" );
             }
             else{
                 kid = keyboard.keyboard_id;
-                $("#displayKeyboards_id").append("<div class='jumbotron text-center'><h1>" + keyboard.keyboardname + "</a></h1></div><div class='keyList'><div><img class='img-thumbnail mx-auto d-block img-fluid' src='" + keyboard.photo + "'></div><div><h4>" + keyboard.descriptionk + "</h4></div><div class='container'><table class='table table-striped'><thead><tr><th>Switch</th><th>Type</th><th>Size</th></tr></thead><tbody><tr><td>" + keyboard.switch + "</td><td>" + keyboard.typek + "</td><td>" + keyboard.size + "</td></tr></tbody></table></div><div class='container'><table class='table'><thead><tr><th><input onclick='editKeyboard("+kid+")' name='Edit Keyboard' value='Edit Keyboard' class='btn btn-warning btn-sm float-center'></th><th><input onclick='removeKeyboard(" + kid + ")' id='button1' type='button' name='Remove keyboard' value='Remove' class='btn btn-danger btn-sm float-right'></input></th></tr></thead></div></div>" );
+                $("#displayKeyboards_id").append("<div id='myDIV'><div class='jumbotron text-center'><h1>" + keyboard.keyboardname + "</a></h1></div><div class='keyList'><div><img class='img-thumbnail mx-auto d-block img-fluid darkphoto' src='" + keyboard.photo + "'></div><div><h4>" + keyboard.descriptionk + "</h4></div><div class='container darktable'><table class='table table-striped'><thead><tr><th>Switch</th><th>Type</th><th>Size</th></tr></thead><tbody><tr><td>" + keyboard.switch + "</td><td>" + keyboard.typek + "</td><td>" + keyboard.size + "</td></tr></tbody></table><div class='container'><table class='table'><thead><tr><th><input onclick='editKeyboard("+kid+")' name='Edit Keyboard' value='Edit Keyboard' class='btn btn-warning btn-sm float-center'></th><th><input onclick='removeKeyboard(" + kid + ")' type='button' name='Remove keyboard' id ='button1' value='Remove' class='btn btn-danger btn-sm float-right'></input></th></tr></thead></div></div></div>" );
             }
         }
     })
     $("#dKeyboard").toggle();
 }
-
 
 function displaySwitches() {
 	$.get("/getSwitches", function(data) {
@@ -25,11 +39,11 @@ function displaySwitches() {
             var switches = data.list[i];
             if(i == 0){
                 sid = switches.switch_id;
-			    $("#displaySwitches_id").empty().append("<div class='jumbotron text-center'><h1>" + switches.switchname + "</a></h1></div><div class='keyList'><div><img class='img-thumbnail mx-auto d-block img-fluid' src='" + switches.photo + "'></div><div></div><div class='container'><table class='table table-striped'><thead><tr><th>Type</th><th>Travel</th><th>Actuation</th><th>Bottom Out</th></tr></thead><tbody><tr><td>" + switches.types + "</td><td>" + switches.travel + "</td><td>" + switches.actuation + "</td><td>" + switches.bottomout + "</td></tr></tbody></table></div><div class='container'><table class='table'><thead><tr><th><input onclick='editSwitch(" +sid+")' name='Edit Switch' value='Edit Switch' class='btn btn-warning btn-sm float-center'></th><th><input onclick='removeSwitches(" + sid + ")' type='button' name='Remove switch' id ='button2' value='Remove' class='btn btn-danger btn-sm float-right'></input></th></tr></thead></div></div>" );
+			    $("#displaySwitches_id").empty().append("<div class='jumbotron text-center'><h1>" + switches.switchname + "</a></h1></div><div class='keyList'><div><img class='img-thumbnail mx-auto d-block img-fluid darkphoto' src='" + switches.photo + "'></div><div></div><div class='container darktable'><table class='table table-striped'><thead><tr><th>Type</th><th>Travel</th><th>Actuation</th><th>Bottom Out</th></tr></thead><tbody><tr><td>" + switches.types + "</td><td>" + switches.travel + "</td><td>" + switches.actuation + "</td><td>" + switches.bottomout + "</td></tr></tbody></table><div class='container'><table class='table'><thead><tr><th><input  onclick='editSwitch(" +sid+")' name='Edit switch' value='Edit Switch' class='btn btn-warning btn-sm float-center'></th><th><input onclick='removeSwitches(" + sid + ")' type='button' name='Remove switch' id ='button2' value='Remove' class='btn btn-danger btn-sm float-right'></input></th></tr></thead></div></div>" );
             }
             else{
                 sid = switches.switch_id;
-                $("#displaySwitches_id").append("<div class='jumbotron text-center'><h1>" + switches.switchname + "</a></h1></div><div class='keyList'><div><img class='img-thumbnail mx-auto d-block img-fluid' src='" + switches.photo + "'></div><div></div><div class='container'><table class='table table-striped'><thead><tr><th>Type</th><th>Travel</th><th>Actuation</th><th>Bottom Out</th></tr></thead><tbody><tr><td>" + switches.types + "</td><td>" + switches.travel + "</td><td>" + switches.actuation + "</td><td>" + switches.bottomout + "</td></tr></tbody></table></div><div class='container'><table class='table'><thead><tr><th><input onclick='editSwitch(" +sid+")' name='Edit switch' value='Edit Switch' class='btn btn-warning btn-sm float-center'></th><th><input onclick='removeSwitches(" + sid + ")' type='button' name='Remove switch' id ='button2' value='Remove' class='btn btn-danger btn-sm float-right'></input></th></tr></thead></div></div>" );
+                $("#displaySwitches_id").append("<div class='jumbotron text-center'><h1>" + switches.switchname + "</a></h1></div><div class='keyList'><div><img class='img-thumbnail mx-auto d-block img-fluid darkphoto' src='" + switches.photo + "'></div><div></div><div class='container darktable'><table class='table table-striped'><thead><tr><th>Type</th><th>Travel</th><th>Actuation</th><th>Bottom Out</th></tr></thead><tbody><tr><td>" + switches.types + "</td><td>" + switches.travel + "</td><td>" + switches.actuation + "</td><td>" + switches.bottomout + "</td></tr></tbody></table><div class='container'><table class='table'><thead><tr><th><input onclick='editSwitch(" +sid+")' name='Edit switch' value='Edit Switch' class='btn btn-warning btn-sm float-center'></th><th><input onclick='removeSwitches(" + sid + ")' type='button' name='Remove switch' id ='button2' value='Remove' class='btn btn-danger btn-sm float-right'></input></th></tr></thead></div></div>" );
             }
         }
     })
@@ -42,11 +56,63 @@ function displayCaps() {
             var caps = data.list[i];
             if(i == 0){
                 cid = caps.cap_id;
-                $("#displayCaps_id").empty().append("<div class='jumbotron text-center'><h1>" + caps.capname + "</a></h1></div><div class='keyList'><div id='capsImg'><img class='img-thumbnail mx-auto d-block img-fluid' src='" + caps.photo + "'></div><div><h4 id='descC'>" + caps.descriptionc + "</h4></div><div class='container'><table class='table table-striped'><thead><tr><th>Material</th></tr></thead><tbody><tr><td>" + caps.material + "</td></tr></tbody></table></div><div class='container'><table class='table'><thead><tr><th><input onclick='editCaps(" + cid + ")' name='Edit Caps' value='Edit Caps' class='btn btn-warning btn-sm float-center'></th><th><input onclick='removeCaps(" + cid + ")' type='button' name='Remove caps' id ='button3' value='Remove' class='btn btn-danger btn-sm float-right'></input></th></tr></thead></div></div>" );
+                $("#displayCaps_id").empty().append("<div class='jumbotron text-center'><h1>" + caps.capname + "</a></h1></div><div class='keyList'><div id='capsImg'><img class='img-thumbnail mx-auto d-block img-fluid darkphoto' src='" + caps.photo + "'></div><div><h4 id='descC'>" + caps.descriptionc + "</h4></div><div class='container darktable'><table class='table table-striped'><thead><tr><th>Material</th></tr></thead><tbody><tr><td>" + caps.material + "</td></tr></tbody></table><div class='container'><table class='table'><thead><tr><th><input onclick='editCaps(" + cid + ")' name='Edit Caps' value='Edit Caps' class='btn btn-warning btn-sm float-center'></th><th><input onclick='removeCaps(" + cid + ")' type='button' name='Remove caps' id ='button3' value='Remove' class='btn btn-danger btn-sm float-right'></input></th></tr></thead></div></div>" );
             }
             else{
                 cid = caps.cap_id;
-                $("#displayCaps_id").append("<div class='jumbotron text-center'><h1>" + caps.capname + "</a></h1></div><div class='keyList'><div><img class='img-thumbnail mx-auto d-block img-fluid' src='" + caps.photo + "'></div><div><h4>" + caps.descriptionc + "</h4></div><div class='container'><table class='table table-striped'><thead><tr><th>Material</th></tr></thead><tbody><tr><td>" + caps.material + "</td></tr></tbody></table></div><div class='container'><table class='table'><thead><tr><th><input onclick='editCaps(" + cid + ")' name='Edit Caps' value='Edit Caps' class='btn btn-warning btn-sm float-center'></th><th><input onclick='removeCaps(" + cid + ")' type='button' name='Remove caps' id ='button3' value='Remove' class='btn btn-danger btn-sm float-right'></input></th></tr></thead></div></div>" );
+                $("#displayCaps_id").append("<div class='jumbotron text-center'><h1>" + caps.capname + "</a></h1></div><div class='keyList'><div id='capsImg'><img class='img-thumbnail mx-auto d-block img-fluid darkphoto' src='" + caps.photo + "'></div><div><h4 id='descC'>" + caps.descriptionc + "</h4></div><div class='container darktable'><table class='table table-striped'><thead><tr><th>Material</th></tr></thead><tbody><tr><td>" + caps.material + "</td></tr></tbody></table><div class='container'><table class='table'><thead><tr><th><input onclick='editCaps(" + cid + ")' name='Edit Caps' value='Edit Caps' class='btn btn-warning btn-sm float-center'></th><th><input onclick='removeCaps(" + cid + ")' type='button' name='Remove caps' id ='button3' value='Remove' class='btn btn-danger btn-sm float-right'></input></th></tr></thead></div></div>" );
+            }
+        }
+    })
+    $("#dCaps").toggle();
+}
+//////
+function alphaKeyboard() {    
+	$.get("/getalphaKeyboard", function(data) {
+        for (var i = 0; i < data.list.length; i++) {
+            var keyboard = data.list[i];
+            if(i == 0){
+                kid = keyboard.keyboard_id;
+                $("#displayKeyboards_id").empty().append("<div id='myDIV'><div class='jumbotron text-center'><h1>" + keyboard.keyboardname + "</a></h1></div><div class='keyList'><div><img class='img-thumbnail mx-auto d-block img-fluid darkphoto' src='" + keyboard.photo + "'></div><div><h4>" + keyboard.descriptionk + "</h4></div><div class='container darktable'><table class='table table-striped'><thead><tr><th>Switch</th><th>Type</th><th>Size</th></tr></thead><tbody><tr><td>" + keyboard.switch + "</td><td>" + keyboard.typek + "</td><td>" + keyboard.size + "</td></tr></tbody></table><div class='container'><table class='table'><thead><tr><th><input onclick='editKeyboard("+kid+")' name='Edit Keyboard' value='Edit Keyboard' class='btn btn-warning btn-sm float-center'></th><th><input onclick='removeKeyboard(" + kid + ")' type='button' name='Remove keyboard' id ='button1' value='Remove' class='btn btn-danger btn-sm float-right'></input></th></tr></thead></div></div></div>" );
+            }
+            else{
+                kid = keyboard.keyboard_id;
+                $("#displayKeyboards_id").append("<div id='myDIV'><div class='jumbotron text-center'><h1>" + keyboard.keyboardname + "</a></h1></div><div class='keyList'><div><img class='img-thumbnail mx-auto d-block img-fluid darkphoto' src='" + keyboard.photo + "'></div><div><h4>" + keyboard.descriptionk + "</h4></div><div class='container darktable'><table class='table table-striped'><thead><tr><th>Switch</th><th>Type</th><th>Size</th></tr></thead><tbody><tr><td>" + keyboard.switch + "</td><td>" + keyboard.typek + "</td><td>" + keyboard.size + "</td></tr></tbody></table><div class='container'><table class='table'><thead><tr><th><input onclick='editKeyboard("+kid+")' name='Edit Keyboard' value='Edit Keyboard' class='btn btn-warning btn-sm float-center'></th><th><input onclick='removeKeyboard(" + kid + ")' type='button' name='Remove keyboard' id ='button1' value='Remove' class='btn btn-danger btn-sm float-right'></input></th></tr></thead></div></div></div>" );
+            }
+        }
+    })
+    $("#dKeyboard").toggle();
+}
+
+
+function alphaSwitches() {
+	$.get("/getalphaSwitches", function(data) {
+		for (var i = 0; i < data.list.length; i++) {
+            var switches = data.list[i];
+            if(i == 0){
+                sid = switches.switch_id;
+			    $("#displaySwitches_id").empty().append("<div class='jumbotron text-center'><h1>" + switches.switchname + "</a></h1></div><div class='keyList'><div><img class='img-thumbnail mx-auto d-block img-fluid darkphoto' src='" + switches.photo + "'></div><div></div><div class='container darktable'><table class='table table-striped'><thead><tr><th>Type</th><th>Travel</th><th>Actuation</th><th>Bottom Out</th></tr></thead><tbody><tr><td>" + switches.types + "</td><td>" + switches.travel + "</td><td>" + switches.actuation + "</td><td>" + switches.bottomout + "</td></tr></tbody></table><div class='container'><table class='table'><thead><tr><th><input  onclick='editSwitch(" +sid+")' name='Edit switch' value='Edit Switch' class='btn btn-warning btn-sm float-center'></th><th><input onclick='removeSwitches(" + sid + ")' type='button' name='Remove switch' id ='button2' value='Remove' class='btn btn-danger btn-sm float-right'></input></th></tr></thead></div></div>" );
+            }
+            else{
+                sid = switches.switch_id;
+                $("#displaySwitches_id").append("<div class='jumbotron text-center'><h1>" + switches.switchname + "</a></h1></div><div class='keyList'><div><img class='img-thumbnail mx-auto d-block img-fluid darkphoto' src='" + switches.photo + "'></div><div></div><div class='container darktable'><table class='table table-striped'><thead><tr><th>Type</th><th>Travel</th><th>Actuation</th><th>Bottom Out</th></tr></thead><tbody><tr><td>" + switches.types + "</td><td>" + switches.travel + "</td><td>" + switches.actuation + "</td><td>" + switches.bottomout + "</td></tr></tbody></table><div class='container'><table class='table'><thead><tr><th><input onclick='editSwitch(" +sid+")' name='Edit switch' value='Edit Switch' class='btn btn-warning btn-sm float-center'></th><th><input onclick='removeSwitches(" + sid + ")' type='button' name='Remove switch' id ='button2' value='Remove' class='btn btn-danger btn-sm float-right'></input></th></tr></thead></div></div>" );
+            }
+        }
+    })
+    $("#dSwitches").toggle();
+}
+
+function alphaCaps() {
+	$.get("/getalphaCaps", function(data) {
+		for (var i = 0; i < data.list.length; i++) {
+            var caps = data.list[i];
+            if(i == 0){
+                cid = caps.cap_id;
+                $("#displayCaps_id").empty().append("<div class='jumbotron text-center'><h1>" + caps.capname + "</a></h1></div><div class='keyList'><div id='capsImg'><img class='img-thumbnail mx-auto d-block img-fluid darkphoto' src='" + caps.photo + "'></div><div><h4 id='descC'>" + caps.descriptionc + "</h4></div><div class='container darktable'><table class='table table-striped'><thead><tr><th>Material</th></tr></thead><tbody><tr><td>" + caps.material + "</td></tr></tbody></table><div class='container'><table class='table'><thead><tr><th><input onclick='editCaps(" + cid + ")' name='Edit Caps' value='Edit Caps' class='btn btn-warning btn-sm float-center'></th><th><input onclick='removeCaps(" + cid + ")' type='button' name='Remove caps' id ='button3' value='Remove' class='btn btn-danger btn-sm float-right'></input></th></tr></thead></div></div>" );
+            }
+            else{
+                cid = caps.cap_id;
+                $("#displayCaps_id").append("<div class='jumbotron text-center'><h1>" + caps.capname + "</a></h1></div><div class='keyList'><div id='capsImg'><img class='img-thumbnail mx-auto d-block img-fluid darkphoto' src='" + caps.photo + "'></div><div><h4 id='descC'>" + caps.descriptionc + "</h4></div><div class='container darktable'><table class='table table-striped'><thead><tr><th>Material</th></tr></thead><tbody><tr><td>" + caps.material + "</td></tr></tbody></table><div class='container'><table class='table'><thead><tr><th><input onclick='editCaps(" + cid + ")' name='Edit Caps' value='Edit Caps' class='btn btn-warning btn-sm float-center'></th><th><input onclick='removeCaps(" + cid + ")' type='button' name='Remove caps' id ='button3' value='Remove' class='btn btn-danger btn-sm float-right'></input></th></tr></thead></div></div>" );
             }
         }
     })
@@ -302,4 +368,3 @@ function sendEKeyboardInfo(kid){
     $("#dKeyboard").toggle();
     $("#dKeyboard").toggle();
 }
-

@@ -47,6 +47,43 @@ function getCaps(req, res){
         }
     })
 }
+
+/*--------------------------------------------------------*/
+function getalphaKeyboard(req, res){
+    console.log("In getKeyboard controller")
+    homepageModel.getalphaKeyboardDB(function(error, result){
+        if (error || result == null) {
+            res.status(500).json({success: false, data: error});
+        } 
+        else{
+            res.json(result)
+        }
+    })
+}
+
+function getalphaSwitches(req, res){
+    console.log("In getSwitches controller")
+    homepageModel.getalphaSwitchesDB(function(error, result){
+        if (error || result == null) {
+            res.status(500).json({success: false, data: error});
+        } 
+        else{
+            res.json(result)
+        }
+    })
+}
+
+function getalphaCaps(req, res){
+    console.log("In getCaps controller")
+    homepageModel.getalphaCapsDB(function(error, result){
+        if (error || result == null) {
+            res.status(500).json({success: false, data: error});
+        } 
+        else{
+            res.json(result)
+        }
+    })
+}
 /*--------------------------------------------------------*/
 function addKeyboard(req, res){
     const keyboard = req.body.keyboard
@@ -129,6 +166,9 @@ module.exports = {
     getKeyboard: getKeyboard,
     getSwitches: getSwitches,
     getCaps: getCaps,
+    getalphaKeyboard: getalphaKeyboard,
+    getalphaSwitches: getalphaSwitches,
+    getalphaCaps: getalphaCaps,
     addKeyboard: addKeyboard,
     addSwitches: addSwitches,
     addCaps: addCaps,
