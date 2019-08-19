@@ -1,3 +1,14 @@
+# Description
+A website for keyboard enthusiasts to document their keyboards, switches, and keycaps into a database.
+
+# Link
+https://dry-basin-27492.herokuapp.com/homepage.html
+
+# Screenshots
+![image](https://user-images.githubusercontent.com/11774190/63293619-7c6e5800-c296-11e9-81ef-4b66dcaca12b.png)
+![image](https://user-images.githubusercontent.com/11774190/63293626-7ed0b200-c296-11e9-8efe-ab301a3c6c37.png)
+![image](https://user-images.githubusercontent.com/11774190/63293629-809a7580-c296-11e9-9afd-f0052d779f07.png)
+
 # node-js-getting-started
 
 A barebones Node.js app using [Express 4](http://expressjs.com/).
